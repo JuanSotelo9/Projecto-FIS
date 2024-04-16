@@ -1,0 +1,333 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url("https://acegif.com/wp-content/gif/confetti-5.gif");
+    background-repeat: no-repeat;
+    background-size: 100% 100vh;
+}
+/* Iniciar sesion */
+.enlace-inicio {
+    border: 1px solid white;
+    padding: .05em 1em;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    font-size: 33.5px;
+    border-radius: .4em;
+}
+/* Registro  */
+.menu{
+    list-style: none;
+    display: flex;
+    text-align: center;
+}
+
+.menu-menor > header >a{
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+}
+.menu > li:hover{
+    background-color: rgba(128, 128, 128, 0.5);
+    max-width: 100%;
+    border-radius: .4em; 
+}
+.menu-menor{
+    position: absolute;
+    display: none;
+    list-style: none;
+    width: 260px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.menu li:hover .menu-menor{
+    display: block;
+}
+.menu-menor header:hover{
+    background-color: rgba(85, 76, 76, 0.377);
+    border-radius: .4em;
+}
+
+
+section{
+    max-width: 80%;
+    max-height: 88vh;
+    margin: auto;
+    background-color: black;
+    font-size: 20px;
+    color: white;
+    
+}
+
+/* Registro */
+.modal{
+    max-width: 100%;
+    max-height: 100vh;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+
+    --opacity: 0;
+    --pointer: none;
+
+    opacity: var(--opacity);
+    pointer-events: var(--pointer);
+    transition: opacity .5s;
+}
+.modal:target{
+    --opacity: 1;
+    --pointer: unset;
+}
+.moda_container{
+    margin: auto;
+    background-color: rgb(104, 100, 100);
+    width: 90%;
+    max-width: 400px;
+    max-height: 90%;
+    overflow: hidden;
+    text-align: center;
+    padding: 2.5em 1.5em;
+    border-radius: 1em;
+}
+.modal:target .moda_container{
+    animation: show 1s .5s backwards;
+}
+@keyframes show {
+    0%{
+        transform: translateY(-150vh);
+    }
+}
+.modal_figure{
+    width: 90%;
+    margin: 0 auto;
+    max-width: 400px;
+    margin-bottom: 2em;
+}
+.modal:target .modal_figure{
+    animation: scale .5s 1.5s backwards;
+}
+@keyframes scale {
+    0%{
+        transform: scale(0);
+    }
+}
+.modal_img{
+    width: 100%;
+    display: block;
+    font-size: .8em;
+}
+.modal_title{
+    position: relative;
+    left: 20px;
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+.modal_close{
+    display: inline-block;
+    border: 1px solid;
+    padding: 1em 2em;
+    text-decoration: none;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    border-radius: .4em;
+}
+.modal_x{
+    position: relative;
+    top: -40px;
+    left: 20%;
+    display: inline-block;
+    border: 1px solid;
+    padding: 1px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    border-radius: .4em;
+    
+}
+@media (max-width: 600px){
+    .modal_title{
+        font-size: 1.7rem;
+    }
+}
+
+/* Inicio */
+.modal2{
+    max-width: 100%;
+    max-height: 100vh;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+
+    --opacity: 0;
+    --pointer: none;
+
+    opacity: var(--opacity);
+    pointer-events: var(--pointer);
+    transition: opacity .5s;
+}
+.modal2:target{
+    --opacity: 1;
+    --pointer: unset;
+}
+
+.moda_container2{
+    margin: auto;
+    background-color:rgb(104, 100, 100);
+    width: 90%;
+    max-width: 300px;
+    max-height: 90%;
+    overflow: hidden;
+    text-align: center;
+    padding: 2.5em 1.5em;
+    border-radius: 1em;
+}
+.modal2:target .moda_container2{
+    animation: show 1s .5s backwards;
+}
+@keyframes show {
+    0%{
+        transform: translateY(-150vh);
+    }
+}
+.modal_figure2{
+    width: 100%;
+    margin: 0 auto;
+    max-width: 400px;
+    margin-bottom: 2em;
+}
+.modal2:target .modal_figure2{
+    animation: scale .5s 1.5s backwards;
+}
+@keyframes scale {
+    0%{
+        transform: scale(0);
+    }
+}
+.modal_img2{
+    width: 100%;
+    display: block;
+    font-size: .8em;
+}
+.modal_title2{
+    position: relative;
+    left: 20px;
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+.modal_close2{
+    display: inline-block;
+    border: 1px solid;
+    padding: 1em 2em;
+    text-decoration: none;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    border-radius: .4em;
+}
+.modal_x2{
+    position: relative;
+    top: -40px;
+    left: 20%;
+    display: inline-block;
+    border: 1px solid;
+    padding: 1px;
+    text-decoration: none;
+    font-weight: 0;
+    color: rgb(255, 255, 255);
+    border-radius: .4em;
+}
+@media (max-width: 600px){
+    .modal_title2{
+        font-size: 1.7rem;
+    }
+}
+
+/* Formulario Registro */
+
+.form-register{
+    width: 400px;
+    background: #24303c;
+    padding: 30px;
+    margin: auto;
+    border-radius: .4em;
+    font-family: 'calibri';
+    color: white;
+    box-shadow: 7px 13px 37px black;
+}
+.controls{
+    color: white;
+    width: 100%;
+    background: #24303c;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 1px;
+    border: 1px solid #ffffff;
+    font-family: 'calibri';
+    font-size: 18px;
+}
+.form-register p {
+    margin-top: 20px;
+    height: 40px;
+    text-align: center;
+    font-size: 15px;
+}
+.form-register a{
+    color: white;
+    text-decoration: none;
+}
+.form-register a:hover{
+    color: white;
+    text-decoration: underline;
+}
+.form-register .botons{
+    width: 100%;
+    background: #1f53c5;
+    border: none;
+    padding: 12px;
+    color: white;
+    margin: 16px 0;
+    font-size: 16px;
+}
+
+/* Formulario Inicio */
+
+.form-register2{
+    width: 100%;
+    background: #24303c;
+    padding: 10px;
+    margin: auto;
+    border-radius: .4em;
+    font-family: 'calibri';
+    color: white;
+    box-shadow: 7px 13px 37px black;
+}
+.controls2{
+    color: white;
+    width: 100%;
+    background: #24303c;
+    padding: 5px;
+    border-radius: 4px;
+    margin-bottom: 1px;
+    border: 1px solid #ffffff;
+    font-family: 'calibri';
+    font-size: 18px;
+}
