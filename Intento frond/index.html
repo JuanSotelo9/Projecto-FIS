@@ -2,29 +2,25 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intento</title>
-    <link rel="shortcut icon" href="imagenes/pngwing.png" type="imagen/x-icon">
+    <title>PrestamosUD</title>
     <link rel="stylesheet" href="estilos/estilo.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/Chart.min.js"></script>
 </head>
 <body>
-    <ul class="menu">
-        <li id="rayas"><a href="#" class="enlace-inicio">Iniciar sesión</a>
-            <!-- <img src="imagenes/rayas.png" width="50px" height="50px" alt=""> -->
-            <ul class="menu-menor">
-                <header id="header2" class="header2">
-                    <a href="#modal2" class="cta2">Iniciar sesión</a>
-                </header>
-                <header id="header" class="header">
-                    <a href="#modal" class="cta">Registro</a>
-                </header>
-            </ul>   
-        </li>
-    </ul>
+    <div class="contenedor">
+        <div class="izquierda">
+            <div class="logo">
+                
+            </div>
+        </div>
+        <div id="derecha" class="derecha">
+            <p>Este es el contenido del lado derecho</p>
+        </div>
+        <button id="btnInicioSesion" class="botonInicioSesion">Iniciar sesión</button>
+    </div>
+    <button id="Iniciar" class="Iniciar">Iniciar sesión</button>
+    <button id="Registrar" class="Registrar">Registrarse</button>
     
-
     <section id="modal" class="modal">
         <div class="moda_container">
             <h2 class="modal_title">Registro
@@ -46,7 +42,7 @@
 
     <section id="modal2" class="modal2">
         <div class="moda_container2">
-            <h2 class="modal_title2">Login
+            <h2 class="modal_title2">Ingresar
                 <a href="#header2" class="modal_x2">X</a>
             </h2>
             <figure class="modal_figure2">
@@ -59,5 +55,7 @@
         </div>
     </section>
 
+    
+    <script src="script/script.js"></script>
 </body>
 </html>
