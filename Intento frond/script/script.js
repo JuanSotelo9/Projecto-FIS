@@ -10,10 +10,14 @@ function mover() {
         // Mostrar los botones "Iniciar sesión" y "Registrarse"
         document.getElementById('Iniciar').style.opacity = '1';
         document.getElementById('Registrar').style.opacity = '1';
+        document.getElementById('Iniciar').style.pointerEvents = 'auto';
+        document.getElementById('Registrar').style.pointerEvents = 'auto';
     }, 2000);
 }
 document.getElementById('btnInicioSesion').addEventListener('click', mover);
 
+
+// Acion de los botones registrar e iniciar sesión
 function intentoiniciar() {
     window.location.href = '#modal2';
 }

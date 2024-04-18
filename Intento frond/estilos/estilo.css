@@ -75,10 +75,11 @@ body {
 
 
 @keyframes cambioFondo {
-    0%, 25%{ background-image: url('imagenes/U1.jpg'); }
-    25%, 50% { background-image: url('imagenes/U2.jpg'); }
-    50%, 75% { background-image: url('imagenes/U3.jpg'); } 
-    75%, 100%{ background-image: url('imagenes/U4.jpg'); }
+    0%, 20%{ background-image: url('Imagenes/U1.jpg'); }
+    20%, 40% { background-image: url('Imagenes/U2.jpg'); }
+    40%, 60% { background-image: url('Imagenes/U3.jpg'); } 
+    60%, 80%{ background-image: url('Imagenes/U4.jpg'); }
+    80%, 100%{ background-image: url('Imagenes/U1.jpg');}
 }
 .derecha::after {
     content: "";
@@ -90,13 +91,13 @@ body {
     background-repeat: no-repeat;
     background-size: cover; 
     opacity: 1;
-    animation: cambioFondo 40s infinite;
+    animation: cambioFondo 10s infinite;
     filter: brightness(0.8)
 }
 
 .Iniciar {
     position: absolute;
-    top: 50%; 
+    top: 400px; 
     left: 50%; 
     transform: translate(-50%, -50%); 
     display: inline-block;
@@ -109,6 +110,7 @@ body {
     border-radius: .4em; 
     cursor: pointer;
     opacity: 0;
+    pointer-events: none;
     transition: opacity 1s ease;
 }
 .Iniciar:hover {
@@ -116,7 +118,7 @@ body {
 }
 .Registrar {
     position: absolute;
-    top: 45%; 
+    top: 350px; 
     left: 50%; 
     width: 143px;
     transform: translate(-50%, -50%); 
@@ -130,6 +132,7 @@ body {
     border-radius: .4em; 
     cursor: pointer;
     opacity: 0;
+    pointer-events: none;
     transition: opacity 1s ease;
 }
 .Registrar:hover {
@@ -150,6 +153,7 @@ section{
     
 }
 
+
 /* Registro */
 .modal{
     max-width: 100%;
@@ -169,6 +173,7 @@ section{
     opacity: var(--opacity);
     pointer-events: var(--pointer);
     transition: opacity .5s;
+    overflow-y: auto;
 }
 .modal:target{
     --opacity: 1;
@@ -184,7 +189,23 @@ section{
     text-align: center;
     padding: 2.5em 1.5em;
     border-radius: 1em;
+    overflow-y: auto;
 }
+/* Scroll para registro*/
+.moda_container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.moda_container::-webkit-scrollbar-track {
+    background: rgb(104, 100, 100);
+    border-radius: 1em;
+}
+
+.moda_container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
 .modal:target .moda_container{
     animation: show 1s .5s backwards;
 }
@@ -280,6 +301,15 @@ section{
     overflow: hidden;
     text-align: center;
     padding: 2.5em 1.5em;
+    border-radius: 1em;
+    overflow-y: auto;
+}
+.moda_container2::-webkit-scrollbar {
+    width: 10px;
+}
+
+.moda_container2::-webkit-scrollbar-track {
+    background: rgb(104, 100, 100);
     border-radius: 1em;
 }
 .modal2:target .moda_container2{
@@ -377,7 +407,7 @@ section{
     text-decoration: none;
 }
 .form-register a:hover{
-    color: white;
+    cursor: pointer;
     text-decoration: underline;
 }
 .form-register .botons{
@@ -401,6 +431,15 @@ section{
     font-family: 'calibri';
     color: white;
     box-shadow: 7px 13px 37px black;
+}
+.form-register2 a{
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+.form-register2 a:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 .controls2{
     color: white;

@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PrestamosUD</title>
     <link rel="stylesheet" href="estilos/estilo.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
 <body>
+
+    <!-- izquierda con el logo de la universidad -->
     <div class="contenedor">
         <div class="izquierda">
             <div class="logo">
@@ -16,17 +19,22 @@
         <div id="derecha" class="derecha">
             <p>Este es el contenido del lado derecho</p>
         </div>
+
+        <!-- Botón de iniciar sesión activa la animacion de movimiento -->
         <button id="btnInicioSesion" class="botonInicioSesion">Iniciar sesión</button>
     </div>
+
+    <!-- Botones que dan paso a sus respectivos modal's -->
     <button id="Iniciar" class="Iniciar">Iniciar sesión</button>
     <button id="Registrar" class="Registrar">Registrarse</button>
     
+    <!-- Modal que contiene el formulario de registro -->
     <section id="modal" class="modal">
         <div class="moda_container">
             <h2 class="modal_title">Registro
                 <a href="#header" class="modal_x">X</a>
             </h2>
-            <figure class="modal_figure">
+            <div class="modal_figure">
                 <section class="form-register">
                     <input class="controls" type="text" name="nombres" id="Usuario" placeholder="Ingrese su nombres">
                     <input class="controls" type="text" name="Apellidos" id="Usuario" placeholder="Ingrese su Apellidos">
@@ -35,27 +43,30 @@
                     <input class="controls" type="password" name="Contraseña" id="Contraseña" placeholder="Ingrese su Contraseña">
                     <p>Estoy de acuerdo con <a >Terminos y condiciones</a></p>
                 </section>
-            </figure>
+            </div>
+
             <a href="#header" class="modal_close" >Registrarse</a>
         </div>
     </section>
 
+    <!-- Modal que contiene el formulario de Inicio de sesión -->
     <section id="modal2" class="modal2">
         <div class="moda_container2">
             <h2 class="modal_title2">Ingresar
                 <a href="#header2" class="modal_x2">X</a>
             </h2>
-            <figure class="modal_figure2">
+            <div class="modal_figure2">
                 <section class="form-register2">
                     <input class="controls2" type="text" name="Usuario" id="Usuario" placeholder="Ingrese su Usuario">
                     <input class="controls2" type="password" name="Contraseña" id="Contraseña" placeholder="Ingrese su Contraseña">
+                    <a href="#modal" id="registrarseLink" class="mandarRegistro">Registrarse</a>
                 </section>
-            </figure>
+            </div>
             <a href="#header2" class="modal_close2">Entrar</a>
         </div>
     </section>
 
-    
+    <!-- Script -->
     <script src="script/script.js"></script>
 </body>
 </html>
