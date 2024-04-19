@@ -91,7 +91,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover; 
     opacity: 1;
-    animation: cambioFondo 10s infinite;
+    animation: cambioFondo 60s infinite;
     filter: brightness(0.8)
 }
 
