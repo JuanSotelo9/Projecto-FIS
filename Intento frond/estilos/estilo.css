@@ -91,8 +91,12 @@ body {
     background-repeat: no-repeat;
     background-size: cover; 
     opacity: 1;
+<<<<<<< HEAD
     animation: cambioFondo 60s infinite;
-    filter: brightness(0.8)
+=======
+    animation: cambioFondo 60s infinite;
+>>>>>>> 9f4cdcf62ae04a3f3e25796aa01b603edd6f15c3
+    filter: brightness(0.8);
 }
 
 .Iniciar {
