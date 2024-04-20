@@ -11,8 +11,10 @@ function mover() {
         document.getElementById('Iniciar').style.opacity = '1';
         document.getElementById('Registrar').style.opacity = '1';
         document.getElementById('MisionVision').style.opacity = '1';
+        document.getElementById('regresar').style.opacity = '1';
         document.getElementById('Iniciar').style.pointerEvents = 'auto';
         document.getElementById('Registrar').style.pointerEvents = 'auto';
+        document.getElementById('regresar').style.pointerEvents = 'auto';
     }, 2000);
 }
 document.getElementById('btnInicioSesion').addEventListener('click', mover);
@@ -28,6 +30,11 @@ function intentoregistrar() {
     window.location.href = '#modal';
 }
 document.getElementById('Registrar').addEventListener('click', intentoregistrar);
+
+function intentoregresar() {
+    window.location.href = 'index.html';
+}
+document.getElementById('regresar').addEventListener('click', intentoregresar);
 
 // Animacion de cambio de texto
 window.onload = function() {

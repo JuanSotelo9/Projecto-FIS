@@ -92,11 +92,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover; 
     opacity: 1;
-<<<<<<< HEAD
     animation: cambioFondo 60s infinite;
-=======
-    animation: cambioFondo 60s infinite;
->>>>>>> 9f4cdcf62ae04a3f3e25796aa01b603edd6f15c3
     filter: brightness(0.8);
 }
 
@@ -141,6 +137,28 @@ body {
     transition: opacity 1s ease;
 }
 .Registrar:hover {
+    background-color: rgba(48, 44, 44, 0.9);
+}
+.regresar {
+    position: absolute;
+    top: 90%; 
+    left: 90%; 
+    width: 143px;
+    transform: translate(-50%, -50%); 
+    display: inline-block;
+    border: 3px solid;
+    padding: 1em 2em;
+    font-weight: 700;
+    background-color: rgba(56, 52, 52, 0.5);
+    color: white;
+    border-color: black;
+    border-radius: .4em; 
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}
+.regresar:hover {
     background-color: rgba(48, 44, 44, 0.9);
 }
 
