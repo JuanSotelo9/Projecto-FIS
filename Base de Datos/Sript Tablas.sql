@@ -205,7 +205,7 @@ CREATE TABLE `Usuario`
 	`n_nombre` VARCHAR(50) NOT NULL,
 	`n_apellido` VARCHAR(50) NOT NULL,
 	`n_usuario` VARCHAR(50) NOT NULL,
-	`n_eMail` VARCHAR(50) NOT NULL,
+	`n_email` VARCHAR(50) NOT NULL,
 	`n_contraseña` VARCHAR(50) NOT NULL,
 	CONSTRAINT `PK_Usuario` PRIMARY KEY (`k_IDusuario` ASC)
 )
