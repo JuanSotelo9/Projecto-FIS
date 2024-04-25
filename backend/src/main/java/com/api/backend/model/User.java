@@ -8,7 +8,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -27,14 +26,12 @@ import lombok.NoArgsConstructor;
 public class User implements UserDetails{
 
     @Id
-    Long k_IDusuario;
+    Long kIDusuario;
     
-    @Basic
-    String n_nombre;
-    String n_apellido;
-    String nUsuario;
-    String n_email;
-    String n_contraseña;
+    String nnombre;
+    String nusuario;
+    String nemail;
+    String ncontrasena;
 
     @Transient
     Role role;
@@ -49,12 +46,12 @@ public class User implements UserDetails{
 
     @Override
     public String getPassword() {
-        return this.n_contraseña;
+        return this.ncontrasena;
     }
 
     @Override
     public String getUsername() {
-        return this.nUsuario;
+        return this.nusuario;
     }
 
     @Override
