@@ -25,7 +25,7 @@ public class AuthService {
 
     public AuthResponse login(LoginRequest request){
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsuario(), request.getPassword()));
-        User user = userRepository.findBynUsuario(request.getUsuario()).orElseThrow();
+        User user = userRepository.findBynusuario(request.getUsuario()).orElseThrow();
         user.setRole(Role.ROLE_USER);
         String token = jwtService.getToken(user);
         return AuthResponse.builder()
@@ -35,12 +35,11 @@ public class AuthService {
 
     public AuthResponse register(RegisterRequest request){
         User user = User.builder()
-            .k_IDusuario(request.getId())
-            .n_nombre(request.getNombre())
-            .n_apellido(request.getApellido())
-            .nUsuario(request.getUsuario())
-            .n_email(request.getEmail())
-            .n_contraseña(passwordEncoder.encode(request.getPassword()))
+            .kIDusuario(request.getId())
+            .nnombre(request.getNombre() + " " + request.getApellido())
+            .nusuario(request.getUsuario())
+            .nemail(request.getEmail())
+            .ncontrasena(passwordEncoder.encode(request.getPassword()))
             .role(Role.ROLE_USER)
             .build();
 
