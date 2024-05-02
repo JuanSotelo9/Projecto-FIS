@@ -163,19 +163,19 @@ grid-template-rows: auto;
     width: 48%;
     height: 60vh;
     background-color: var(--secundario);
-    padding: 2.5em 1.5em;
+    padding: .5em 1.5em;
     border-radius: 1em;
     opacity: 0;
     transition: opacity 1s ease;
 }
 .TituloModalPresentacion{
-    margin: 0;
-    padding: 0;
+    padding: 2rem;
     position: center;
     text-align: center;
     color: var(--blanco);
     font-size: 30px;
     font-family:var(--fuentePrincipal);
+    text-transform:uppercase;
 }
 .ContenedorPoliticadecalidad{
     margin: auto;
@@ -494,5 +494,8 @@ section{
     font-family: var(--fuentePrincipal);
     font-size: 18px;
 }
+
+
+
 
 
