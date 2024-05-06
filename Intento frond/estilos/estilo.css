@@ -4,6 +4,7 @@
     --secundarioObscuro:
     --terciario: #1f53c5;
     --izquierdoIndex: rgb(235, 250, 255);
+    --izquierdoIndexOscuro:rgb(175, 221, 237);
     --boton: rgba(56, 52, 52, 0.5);
     --botonHover: rgba(48, 44, 44, 0.9);
     --scrollbarFondo: rgb(104, 100, 100);
@@ -12,10 +13,13 @@
     --blanco: #FFF;
     --negro: #000;
     --negroOpacidad50: rgba(0, 0, 0, 0.5);
+    --sombraCaja: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     
     --fuentePrincipal: 'Gill Sans',  Calibri;
     
     }
+
+/* GLOBALES */
 
 *{
     margin: 0;
@@ -27,6 +31,11 @@ body {
     margin: 0; 
     background-color: var(--primario);
 }
+
+a {
+text-decoration: none;
+}
+
 .contenedor {
     display: flex; 
     overflow: hidden;
@@ -496,6 +505,169 @@ section{
 }
 
 
+/**homeUser**/
 
 
+/** Diseño Barra de Navegación **/
+.header {
+    justify-content: center;
+    background-color: #31365b60;
+    padding: 1rem 0;
+    
+}
+
+.navegacion {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.navegacion__elemento {
+    background-color: #31365b01;
+    margin-top: .5rem;
+}
+
+.navegacion__elemento--busqueda{
+    
+} 
+
+.barraBusqueda {
+    width: 40rem; /* Cambia el ancho según sea necesario */
+    height: 3.8rem; /* Cambia la altura según sea necesario */
+    padding: 5px; /* Añade relleno interno para que se vea mejor */
+    margin-right: 10PX;
+    font-size: 1.5rem; /* Cambia el tamaño de la fuente según sea necesario */
+    text-align: center;
+    border: 1px solid var(--izquierdoIndexOscuro); /* Agrega un borde */
+    border-radius: .5rem; /* Añade esquinas redondeadas */
+    background-color: #f0f0f0; /* Cambia el color de fondo */
+    
+}
+
+/* Estilos adicionales para cuando la barra de búsqueda está enfocada */
+.barraBusqueda:focus {
+    outline: none; /* Elimina el contorno predeterminado al enfocar */
+    border-color: var(--botonHover); /* Cambia el color del borde al enfocar */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Agrega una sombra al enfocar */
+}
+
+.nav__boton {
+    
+    width: 4rem; /* Cambia el ancho según sea necesario */
+    height: 4rem; /* Cambia la altura según sea necesario */
+    padding: 5px;
+    border-radius: 6rem;
+    border: 1px solid var(--izquierdoIndexOscuro);
+}
+/*FIN DISEÑO BARRA NAV*/
+
+/*Preview Recursos*/
+
+.contenedorHomeUser {
+display: flex;
+flex-direction: column;
+background-color: var(--izquierdoIndexOscuro);
+margin: 6rem 50rem;
+border-radius: 2rem;
+padding: 2rem;
+text-align: center;
+align-items: center;
+box-shadow: var(--sombraCaja);
+position: relative;
+}
+
+
+.titulo {
+    color: var(--negro);
+}
+
+.recursos{
+    display: grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 120rem;
+}
+
+.previewRecurso{
+    background-color: var(--izquierdoIndex);
+    margin: 2rem 2rem;
+    padding: 1rem 1rem;
+    border-radius: 1.5rem;
+    overflow: hidden;
+}
+
+.recurso__titulo {
+    text-align: center;
+    font-family: var(--fuentePrincipal);
+    font-size: 2rem;
+    font-weight: bolder;
+    margin: 1rem;
+}
+
+.recurso__imagen{
+    width: 100%; /* Ajusta el ancho de la imagen al 100% del contenedor */
+    height: auto; /* Mantiene la proporción de aspecto de la imagen */
+    margin: 0;
+    border-radius: 1.5rem;
+}
+
+.slides {
+    height: 18rem;
+    width: 16rem;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid;
+    border-color: var(--izquierdoIndexOscuro);
+    border-radius: 1.5rem;
+}
+
+.slide {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    inset: 0;
+    animation: slide-show 20s infinite; /* Ajusta la duración total de la animación */
+}
+
+  .slide_1 {
+    animation-delay: 4s;
+  }
+
+  .slide_2 {
+    animation-delay: 8s;
+  }
+
+  .slide_3 {
+    animation-delay: 12s;
+  }
+  
+  .slide_4 {
+    animation-delay: 16s;
+  }
+
+
+.slide img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+@keyframes slide-show {
+    0% {
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    20%,
+    30% {
+      opacity: 1;
+      scale: 1.03;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
 
