@@ -35,12 +35,11 @@ public class AuthService {
 
     public AuthResponse register(RegisterRequest request){
         User user = User.builder()
-            .k_IDusuario(request.getId())
-            .n_nombre(request.getNombre())
-            .n_apellido(request.getApellido())
+            .kIDusuario(request.getId())
+            .nNombre(request.getNombre()+ " " + request.getApellido())
             .nUsuario(request.getUsuario())
-            .n_email(request.getEmail())
-            .n_contraseña(passwordEncoder.encode(request.getPassword()))
+            .nEmail(request.getEmail())
+            .nContraseña(passwordEncoder.encode(request.getPassword()))
             .role(Role.ROLE_USER)
             .build();
 

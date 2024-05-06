@@ -27,14 +27,14 @@ import lombok.NoArgsConstructor;
 public class User implements UserDetails{
 
     @Id
-    Long k_IDusuario;
+    Long kIDusuario;
     
     @Basic
-    String n_nombre;
-    String n_apellido;
+    String nNombre;
+    // String n_apellido;
     String nUsuario;
-    String n_email;
-    String n_contraseña;
+    String nEmail;
+    String nContraseña;
 
     @Transient
     Role role;
@@ -49,7 +49,7 @@ public class User implements UserDetails{
 
     @Override
     public String getPassword() {
-        return this.n_contraseña;
+        return this.nContraseña;
     }
 
     @Override
