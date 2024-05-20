@@ -1,3 +1,14 @@
+const hamMenu = document.querySelector(".ham-menu");
+
+const offScreenMenu = document.querySelector(".off-screen-menu");
+
+hamMenu.addEventListener("click", () => {
+  hamMenu.classList.toggle("active");
+  offScreenMenu.classList.toggle("active");
+});
+
+
+
 function mover() {
     // Ocultar el botón
     document.getElementById('btnInicioSesion').style.opacity = '0';
@@ -18,7 +29,6 @@ function mover() {
     }, 2000);
 }
 document.getElementById('btnInicioSesion').addEventListener('click', mover);
-
 
 // Acion de los botones registrar e iniciar sesión
 function intentoiniciar() {
@@ -52,3 +62,4 @@ window.onload = function() {
         }
     }, 120000);
 };
+
