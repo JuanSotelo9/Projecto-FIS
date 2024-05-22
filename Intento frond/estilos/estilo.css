@@ -13,8 +13,13 @@
     --blanco: #FFF;
     --negro: #000;
     --negroOpacidad50: rgba(0, 0, 0, 0.5);
-    --sombraCaja: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    
+    --negroOpacidad80:  rgba(0, 0, 0, 0.8);
+    --blancoOpacidad80:  rgba(255, 255, 255, 0.8);
+    --sombraCaja: rgba(255, 255, 255, 0.35) 0px 5px 15px;
+    --bgColor: #fafafa;
+    --navbarColor: #a268c9;
+    --navbarHeight: 5rem;
+
     --fuentePrincipal: 'Gill Sans',  Calibri;
     
     }
@@ -509,165 +514,304 @@ section{
 
 
 /** Diseño Barra de Navegación **/
-.header {
-    justify-content: center;
-    background-color: #31365b60;
-    padding: 1rem 0;
-    
-}
+.navbar {
+    background-color: var(--izquierdoIndexOscuro);
+    height: var(--navbarHeight);
+    padding: 1rem;
+    display: flex;
+    align-items: center; /* Eje Y */
+    justify-content: space-between; /* Eje X */
+  }
 
-.navegacion {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-}
-
-.navegacion__elemento {
-    background-color: #31365b01;
-    margin-top: .5rem;
-}
-
-.navegacion__elemento--busqueda{
-    
-} 
-
-.barraBusqueda {
-    width: 40rem; /* Cambia el ancho según sea necesario */
-    height: 3.8rem; /* Cambia la altura según sea necesario */
-    padding: 5px; /* Añade relleno interno para que se vea mejor */
-    margin-right: 10PX;
-    font-size: 1.5rem; /* Cambia el tamaño de la fuente según sea necesario */
-    text-align: center;
-    border: 1px solid var(--izquierdoIndexOscuro); /* Agrega un borde */
-    border-radius: .5rem; /* Añade esquinas redondeadas */
-    background-color: #f0f0f0; /* Cambia el color de fondo */
-    
-}
-
-/* Estilos adicionales para cuando la barra de búsqueda está enfocada */
-.barraBusqueda:focus {
-    outline: none; /* Elimina el contorno predeterminado al enfocar */
-    border-color: var(--botonHover); /* Cambia el color del borde al enfocar */
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Agrega una sombra al enfocar */
-}
-
-.nav__boton {
-    
-    width: 4rem; /* Cambia el ancho según sea necesario */
-    height: 4rem; /* Cambia la altura según sea necesario */
-    padding: 5px;
-    border-radius: 6rem;
-    border: 1px solid var(--izquierdoIndexOscuro);
-}
-/*FIN DISEÑO BARRA NAV*/
-
-/*Preview Recursos*/
-
-.contenedorHomeUser {
-display: flex;
-flex-direction: column;
-background-color: var(--izquierdoIndexOscuro);
-margin: 6rem 50rem;
-border-radius: 2rem;
-padding: 2rem;
-text-align: center;
-align-items: center;
-box-shadow: var(--sombraCaja);
-position: relative;
-}
-
-
-.titulo {
-    color: var(--negro);
-}
-
-.recursos{
-    display: grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap: 2rem;
-    max-width: 120rem;
-}
-
-.previewRecurso{
-    background-color: var(--izquierdoIndex);
-    margin: 2rem 2rem;
-    padding: 1rem 1rem;
-    border-radius: 1.5rem;
-    overflow: hidden;
-}
-
-.recurso__titulo {
-    text-align: center;
-    font-family: var(--fuentePrincipal);
+  .navbar .inicio {
     font-size: 2rem;
-    font-weight: bolder;
-    margin: 1rem;
+    font-family: var(--fuentePrincipal);
+  }
+
+  .navbar .burger {
+    display: none;
+  }
+
+  .navbar .inicio a {
+    text-decoration: none;
+    color: var(--negro);
+    transition: color 0.3s ease;
+  }
+
+  .navbar .inicio a:hover {
+    color: var(--blanco);
+  }
+
+  .search-bar {
+    display: flex;
+  }
+
+  .search-bar .search {
+    width: 20rem;
+    padding: 0.5rem;
+    border-radius: 0.2rem 0 0 0.2rem;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+  }
+  .search-bar button {
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 0;
+    background-color: var(--bgColor);
+    border-radius: 0 0.2rem 0.2rem 0;
+    /*background-color: var(--boton);*/
+    transition: opacity 0.3s ease;
+  }
+
+  .search-bar button:hover {
+    opacity: 0.7;
+  }
+
+  .navbar .btnUser {
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 0;
+    background-color: var(--bgColor);
+    border-radius: 0.2rem;
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - var(--navbarHeight));
 }
 
-.recurso__imagen{
-    width: 100%; /* Ajusta el ancho de la imagen al 100% del contenedor */
-    height: auto; /* Mantiene la proporción de aspecto de la imagen */
-    margin: 0;
-    border-radius: 1.5rem;
+.title {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--negro);
 }
 
-.slides {
-    height: 18rem;
-    width: 16rem;
-    overflow: hidden;
-    position: relative;
-    border: 2px solid;
-    border-color: var(--izquierdoIndexOscuro);
-    border-radius: 1.5rem;
+.selector_container {
+  max-width: 48rem;
+  width: 100%;
+  /* height: fit-content; */
+  margin-inline: 5rem;
+  background-color: #fff;
+  box-shadow: 0 7px 0.8rem rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  border-radius: 0.3rem;
 }
 
-.slide {
+.card_container {
+  display: flex;
+  gap: 2rem;
+}
+
+.card {
+  --blur: 16px;
+  --size: clamp(400px, 50vmin, 500px);
+  width: var(--size);
+  aspect-ratio: 6 / 5;
+  position: relative;
+  border-radius: 2rem;
+  overflow: hidden;
+  color: #000;
+  transform: translateZ(0);
+  z-index: 998; /* Valor más bajo para que las tarjetas estén detrás del menú */
+}
+
+.card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(calc(1 + (var(--hover, 0) * 0.25)))
+  rotate(calc(var(--hover, 0) * -5deg));
+  transition: transform 0.2s;
+}
+
+.card__footer {
+  padding: 0 1.5rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: red;
+  display: grid;
+  grid-template-row: auto auto;
+  gap: 0.5ch;
+  background: hsl(0 0% 100% / 0.5);
+  backdrop-filter: blur(var(--blur));
+  height: 30%;
+  align-content: center;
+ }
+
+  .card__action {
     position: absolute;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    inset: 0;
-    animation: slide-show 20s infinite; /* Ajusta la duración total de la animación */
-}
+    aspect-ratio: 1;
+    width: calc(var(--size) * 0.15);
+    bottom: 30%;
+    right: 1.5rem;
+    transform: translateY(50%) translateY(calc((var(--size) * 0.4)))
+      translateY(calc(var(--hover, 0) * (var(--size) * -0.4)));
+    background: purple;
+    display: grid;
+    place-items: center;
+    border-radius: 0.5rem;
+    background: hsl(0 0% 100% / 0.5);
+    /*   backdrop-filter: blur(calc(var(--blur) * 0.5)); */
+    transition: transform 0.2s;
+     }
 
-  .slide_1 {
-    animation-delay: 4s;
+  .card__action svg {
+    aspect-ratio: 1;
+    width: 50%;
   }
 
-  .slide_2 {
-    animation-delay: 8s;
-  }
-
-  .slide_3 {
-    animation-delay: 12s;
-  }
-  
-  .slide_4 {
-    animation-delay: 16s;
-  }
-
-
-.slide img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-@keyframes slide-show {
-    0% {
-      opacity: 0;
+  .card__footer span:nth-of-type(1) {
+    font-size: calc(var(--size) * 0.065);
     }
-    10% {
-      opacity: 1;
+
+    .card__footer span:nth-of-type(2) {
+        font-size: calc(var(--size) * 0.035);
+      }
+    
+      .card:is(:hover, :focus-visible) {
+        --hover: 1;
+      }
+    
+    
+        /* off-screen-menu */
+        .off-screen-menu {
+            background-color:  var(--negroOpacidad80);
+            height: 100vh;
+            width: 100%;
+            max-width: 450px;
+            position: fixed;
+            top: 0;
+            right: -450px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;    
+            justify-content: center;
+            text-align: center;
+            font-size: 3rem;
+            transition: .3s ease;
+            z-index: 999;
+        }
+        .off-screen-menu.active {
+            right: 0;
+            z-index: 999; /* Valor alto para que el menú esté sobre las tarjetas */
+        }
+    
+        .off-screen-menu ul{
+            margin-top: 2rem;
+            list-style-type: none;
+        }
+
+        .off-screen-menu li {
+            padding: .5rem;
+            color: var(--izquierdoIndex);
+            text-align: justify;
+            border-style: solid;
+            border-radius:.5rem;
+            border-color: var(--blancoOpacidad80);
+            border-top:none;
+            border-left: none;
+            border-right: none;
+        }
+
+        .off-screen-menu a{
+            color: var(--blanco);
+            font-family: var(--fuentePrincipal);
+            text-transform: uppercase;
+            font-size: x-large;
+        }
+
+        
+    .ham-menu {
+        display: none;
+        height: 50px;
+        width: 40px;
+        margin-left: auto;
+        position: relative;
+
     }
-    20%,
-    30% {
-      opacity: 1;
-      scale: 1.03;
+
+    
+    .ham-menu span {
+        height: 5px;
+        width: 100%;
+        background-color: var(--blanco);
+        border-radius: 25px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: .3s ease;
+        z-index: 1000; /* Valor alto para que el menú esté sobre las tarjetas */
     }
-    50% {
-      opacity: 0;
+
+    .ham-menu span:nth-child(1) {
+        top: 25%;
+    }
+    .ham-menu span:nth-child(3) {
+        top: 75%;
+    }
+    .ham-menu.active span {
+        background-color: white;
+    }
+    .ham-menu.active span:nth-child(1) {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+    .ham-menu.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .ham-menu.active span:nth-child(3) {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+  @media (width <= 768px) {
+
+    .navbar .search-bar,
+    .navbar .btnUser {
+      display: none;
+    }
+
+    .navbar .search-bar {
+      display: none;
+    }
+
+    .container {
+      height: calc(100vh - var(--navbarHeight));
+    }
+
+    .selector_container {
+      height: calc(100vh - var(--navbarHeight));
+    }
+
+    .card {
+      width: 12rem;
+    }
+
+    .card_container {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .ham-menu{
+    display: block;
+    }
+
+  }
+
+  @media (width <= 480px) {
+    .card {
+      width: 12rem;
     }
   }
 
+
+  /*Mi cuenta*/
