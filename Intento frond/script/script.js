@@ -1,3 +1,13 @@
+const hamMenu = document.querySelector(".ham-menu");
+
+const offScreenMenu = document.querySelector(".off-screen-menu");
+
+hamMenu.addEventListener("click", () => {
+  hamMenu.classList.toggle("active");
+  offScreenMenu.classList.toggle("active");
+});
+
+
 function mover() {
     // Ocultar el botón
     document.getElementById('btnInicioSesion').style.opacity = '0';
@@ -52,3 +62,55 @@ window.onload = function() {
         }
     }, 120000);
 };
+
+document.querySelector('.modal_close').addEventListener('click', function (e) {
+    e.preventDefault(); // Prevenir el comportamiento por defecto del enlace
+
+    // Obtener los valores de los campos del formulario de registro
+    const nombre = document.querySelector("input[name='nombres']").value;
+    const apellidos = document.querySelector("input[name='Apellidos']").value;
+    const usuario = document.querySelector("input[name='Usuario']").value;
+    const email = document.querySelector("input[name='email']").value;
+    const contrasena = document.querySelector("input[name='Contraseña']").value;
+
+    // Crear el objeto de datos para enviar al back-end
+    const data = {
+        nombre,
+        apellidos,
+        usuario,
+        email,
+        contrasena
+    };
+
+    // Enviar datos al back-end usando Axios
+    axios.post('', data)
+        .then(response => {
+            console.log('Registro exitoso', response);
+            // Realizar alguna acción tras el éxito del registro
+        })
+        .catch(error => {
+            console.error('Error al registrar', error);
+        });
+});
+
+document.querySelector('.modal_close2').addEventListener('click', function (e) {
+    e.preventDefault();
+
+    // Obtener los valores del formulario de inicio de sesión
+    const usuario = document.querySelector(".form-register2 input[name='Usuario']").value;
+    const contrasena = document.querySelector(".form-register2 input[name='Contraseña']").value;
+
+    const data = {
+        usuario,
+        contrasena
+    };
+
+    axios.post('', data)
+        .then(response => {
+            console.log('Inicio de sesión exitoso', response);
+            // Realizar alguna acción tras el éxito del inicio de sesión
+        })
+        .catch(error => {
+            console.error('Error al iniciar sesión', error);
+        });
+});
