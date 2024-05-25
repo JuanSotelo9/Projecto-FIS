@@ -1,6 +1,7 @@
 package com.api.backend.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,10 +11,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "tipoderecurso")
+@Table(name = "tipoDeRecurso")
 public class TipoRecurso {
     
-    private int kidtipoRecurso;
-    private String nnombretiporecurso;
-    private String ndescripciontiporecurso;
+    @Id
+    private int kIdtipoRecurso;
+    private String nNombretiporecurso;
+    private String nDescripciontiporecurso;
 }

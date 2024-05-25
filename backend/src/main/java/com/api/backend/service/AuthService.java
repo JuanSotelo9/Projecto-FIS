@@ -23,30 +23,47 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
 
-    public AuthResponse login(LoginRequest request){
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsuario(), request.getPassword()));
-        User user = userRepository.findBynusuario(request.getUsuario()).orElseThrow();
-        user.setRole(Role.ROLE_USER);
-        String token = jwtService.getToken(user);
-        return AuthResponse.builder()
-            .token(token)
-            .build();
+    public AuthResponse loginUser(LoginRequest request){
+        try{
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsuario(), request.getPassword()));
+            User user = userRepository.findBynUsuario(request.getUsuario()).orElseThrow();
+            user.setRole(Role.ROLE_USER);
+            String token = jwtService.getToken(user);
+            return AuthResponse.builder()
+                .response(token)
+                .build();
+        }catch(Exception e){
+            return AuthResponse.builder()
+            .response("Datos Incorrectos")
+            .build(); 
+        }
+        
     }
 
     public AuthResponse register(RegisterRequest request){
-        User user = User.builder()
-            .kIDusuario(request.getId())
-            .nnombre(request.getNombre() + " " + request.getApellido())
-            .nusuario(request.getUsuario())
-            .nemail(request.getEmail())
-            .ncontrasena(passwordEncoder.encode(request.getPassword()))
+        try{
+            User user = User.builder()
+            .kIdusuario(request.getId())
+            .nNombre(request.getNombre() + " " + request.getApellido())
+            .nUsuario(request.getUsuario())
+            .nEmail(request.getEmail())
+            .nPassword(passwordEncoder.encode(request.getPassword()))
             .role(Role.ROLE_USER)
             .build();
-
-        userRepository.save(user);
-
-        return AuthResponse.builder()
-            .token(jwtService.getToken(user))
+            userRepository.save(user);
+            return AuthResponse.builder()
+            .response("Success")
             .build();
+        }catch(Exception e){
+            return AuthResponse.builder()
+            .response("Error")
+            .build();
+
+        }
+        
+
+        
+
+        
     }
 }
