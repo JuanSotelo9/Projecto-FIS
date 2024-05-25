@@ -20,10 +20,15 @@ public class AuthController {
     
     private final AuthService authService;
 
-    @PostMapping(value = "login")
-    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request){
-        return ResponseEntity.ok(authService.login(request));
+    @PostMapping(value = "login-user")
+    public ResponseEntity<AuthResponse> loginUser(@RequestBody LoginRequest request){
+        return ResponseEntity.ok(authService.loginUser(request));
     }
+
+    /*@PostMapping(value = "login-user")
+    public ResponseEntity<AuthResponse> loginAdmin(@RequestBody LoginRequest request){
+        return ResponseEntity.ok(authService.loginAdmin(request));
+    }*/
 
     @PostMapping(value = "register")
     public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request){

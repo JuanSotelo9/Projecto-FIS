@@ -29,7 +29,7 @@ public class TipoRecursoService {
     }
 
     public boolean deleteTipoRecurso(TipoRecurso tipoRecurso){
-        if(tipoRecursoRepository.existsById(tipoRecurso.getKidtipoRecurso())){
+        if(tipoRecursoRepository.existsById(tipoRecurso.getKIdtipoRecurso())){
             tipoRecursoRepository.delete(tipoRecurso);
             return true;
         }else{
