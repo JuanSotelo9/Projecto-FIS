@@ -129,10 +129,25 @@ document.querySelector('.modal_close2').addEventListener('click', function (e) {
     };
 
     let token
+    var x2;
+    var x3=0;
     api.post('/auth/login-user', data)
         .then(function (response){
+            x2=response.data.response
+            x3=response.data.id
+            console.log(response.data)  
             token = response.data.response;
-            window.location.href = 'homeUser.html';
+
+            if(x3!=null){
+                console.log(x3) 
+                window.location.href = 'homeUser.html';
+            }
+
+            if(x2=="Datos Incorrectos"){
+                const successMessage2 = document.getElementById('login-success-message');
+                successMessage2.style.display = 'block';
+                successMessage2.textContent = 'Usuario o contraseña incorrectos';
+            }
         })
         .catch(function (error){
             console.error("Error en la peticion: ", error)
