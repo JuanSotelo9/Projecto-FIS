@@ -2,132 +2,77 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estilos/estilo.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-    <title>Home - PrestamosUD</title>
-</head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Henry" />
+    <meta name="description" content="Prestamos UD - Reservar Aulas y Laboratorios" />
+    <meta name="keywords" content="Prestamos UD, Reservar Aulas y Laboratorios" />
+    <meta property="og:image" content="./images/previewAula1.webp" />
+    <link rel="stylesheet" href="estilos/estilo.css" />
 
 <body>
-    <nav class="header">
-        <div class="navegacion">
-            <section class="navegacion__elemento">
-                <a href="homeUser.html">
-                    <button class="nav__boton">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home-2" width="20"
-                            height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="#000000" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
-                            <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-                            <path d="M10 12h4v4h-4z" />
-                        </svg>
-                    </button>
-                </a>
-            </section>
-            <section class="navegacion__elemento navegacion__elemento--busqueda">
-                <input class="barraBusqueda" type="text" placeholder="Buscar">
-                <button class="nav__boton nav__boton--buscar">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="20"
-                        height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="#000000" fill="none"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-                        <path d="M21 21l-6 -6" />
-                    </svg>
-                </button>
-            </section>
-            <section class="navegacion__elemento">
-                <a href="micuenta.html">
-                    <button class="nav__boton">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="20"
-                            height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="#000000" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                        </svg>
-                    </button>
-            </section>
+    <div class="off-screen-menu">
+        <div class="search-bar">
+            <input type="search" placeholder="Buscar" name="" id="" class="search" />
+            <button type="submit">Buscar</button>
+        </div>
+        <ul>
+            <li><a href="homeUser.html">Inicio</a></li>
+            <li><a href="micuenta.html">Mi Cuenta</a></li>
+            <li><a href="#">Contactanos</a></li>
+        </ul>
+    </div>
+
+    <nav class="navbar">
+        <h2 class="inicio">
+            <a href="homeUser.html" >
+                Prestamos UD
             </a>
+        </h2>
+
+        <div class="search-bar">
+            <input type="search" placeholder="Buscar" name="" id="" class="search" />
+            <button type="submit">Buscar</button>
+        </div>
+
+        <a href="micuenta.html">
+            <button type="button" class="btnUser">Mi cuenta</button>
+        </a>
+
+        <div class="ham-menu">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </nav>
-    <main class="contenedorHomeUser">
-        <h1 class="titulo">Reservar</h1>
-        <div class="recursos">
-            <div class="previewRecurso">
-                <p class="recurso__titulo">Aulas</p>
-                <div class="slides">
-                    <a href="recurso.html">
-                        <div class="slide slide_1">
-                            <img class="recurso__imagen" src="estilos/imagenes/PreviewRecursos/previewAula1.png"
-                                alt="Aulas">
-                        </div>
-                        <div class="slide slide_2">
-                            <img class="recurso__imagen" src="estilos/imagenes/PreviewRecursos/previewAula2.png"
-                                alt="Aulas">
-                        </div>
-                        <div class="slide slide_3">
-                            <img class="recurso__imagen" src="estilos/imagenes/PreviewRecursos/previewAula3.png"
-                                alt="Aulas">
-                        </div>
-                        <div class="slide slide_4">
-                            <img class="recurso__imagen" src="estilos/imagenes/PreviewRecursos/previewAula3.png"
-                                alt="Aulas">
-                        </div>
-                    </a>
-                </div>
+    <main class="container">
+        <section class="selector_container">
+            <h1 class="title">Reservar</h1>
+            <div class="card_container">
+                <a href="#" class="card">
+                    <img src="estilos/imagenes/PreviewRecursos/previewAula1.webp" alt="Aulas"
+                        class="card__img" />
+                    <span class="card__footer">
+                        <span>Aulas</span>
+                    </span>
+                </a>
+                <a href="#" class="card">
+                    <img src="estilos/imagenes/PreviewRecursos/previewLab2.webp" alt="Laboratorios" class="card__img" />
+                    <span class="card__footer">
+                        <span>Laboratorios</span>
+                    </span>
+                </a>
+                <a href="#" class="card">
+                    <img src="estilos/imagenes/PreviewRecursos/previewOtros1.webp" alt="Otros"
+                        class="card__img" />
+                    <span class="card__footer">
+                        <span>Otros</span>
+                    </span>
+                </a>
             </div>
-
-            <!--Recurso-->
-            <div class="previewRecurso slide_1">
-                <p class="recurso__titulo">Laboratorios</p>
-                <div class="slides">
-                    <a href="recurso.html">
-                        <div class="slide slide_1">
-                            <img class="recurso__imagen" src="estilos/imagenes/PreviewRecursos/previewLab1.png"
-                                alt="Laboratorios">
-                        </div>
-                        <div class="slide slide_2">
-                            <img class="recurso__imagen" src="estilos/imagenes/PreviewRecursos/previewLab2.png"
-                                alt="Laboratorios">
-                        </div>
-                        <div class="slide slide_3">
-                            <img class="recurso__imagen" src="estilos/imagenes/PreviewRecursos/previewLab3.png"
-                                alt="Laboratorios">
-                        </div>
-                    </a>
-                </div>
-            </div><!--Recurso-->
-            <!--Recurso-->
-            <div class="previewRecurso slide_1">
-                <p class="recurso__titulo">Otros</p>
-                <div class="slides">
-                    <a href="recurso.html">
-                        <div class="slide slide_1">
-                            <img class="recurso__imagen" src="estilos/imagenes/PreviewRecursos/previewOtros1.png"
-                                alt="Aulas">
-                        </div>
-                        <div class="slide slide_2">
-                            <img class="recurso__imagen" src="estilos/imagenes/PreviewRecursos/previewOtros2.png"
-                                alt="Aulas">
-                        </div>
-                        <div class="slide slide_3">
-                            <img class="recurso__imagen" src="estilos/imagenes/PreviewRecursos/previewOtros3.png"
-                                alt="Aulas">
-                        </div>
-                        <div class="slide slide_4">
-                            <img class="recurso__imagen" src="estilos/imagenes/PreviewRecursos/previewOtros4.png"
-                                alt="Aulas">
-                        </div>
-                    </a>
-                </div>
-            </div><!--Recurso-->
-        </div>
+        </section>
     </main>
-
-
+    <script src="script/script.js"></script>
 </body>
 
 </html>
