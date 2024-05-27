@@ -1,5 +1,6 @@
 package com.api.backend.config;
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -43,4 +44,5 @@ public class ApplicationConfig {
         return usuario -> userRepository.findBynUsuario(usuario)
         .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
+
 }

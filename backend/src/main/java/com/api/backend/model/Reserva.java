@@ -1,5 +1,8 @@
 package com.api.backend.model;
 
+import java.sql.Date;
+import java.sql.Time;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -11,13 +14,16 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "recurso")
-public class Recurso {
+@Table(name = "reserva")
+public class Reserva {
     
     @Id
-    int kIdrecurso;
-    String nNombrerecurso;
-    String nDescripcionrecurso;
-    int kIdtipoRecurso;
+    String kIdreserva;
 
+    Time fHorainicioreserva;
+    Time fHorafinalreserva;
+    Date fFechareserva;
+    String nEstadoreserva;
+    Long kIdusuario;
+    int kIdrecurso;
 }

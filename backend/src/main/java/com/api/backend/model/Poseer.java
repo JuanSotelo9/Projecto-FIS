@@ -1,7 +1,7 @@
 package com.api.backend.model;
 
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,13 +11,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "recurso")
-public class Recurso {
+@Table(name = "poseer")
+public class Poseer {
     
-    @Id
-    int kIdrecurso;
-    String nNombrerecurso;
-    String nDescripcionrecurso;
-    int kIdtipoRecurso;
-
+    @EmbeddedId
+    PoseerId poseerId;
 }

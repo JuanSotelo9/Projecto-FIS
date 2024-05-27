@@ -3,10 +3,9 @@ package com.api.backend.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.api.backend.model.Recurso;
+import com.api.backend.model.Reserva;
 
 @Repository
-public interface RecursoRepository extends JpaRepository<Recurso, Integer> {
+public interface ReservaRepository extends JpaRepository<Reserva, String>{
     
-     
 }
