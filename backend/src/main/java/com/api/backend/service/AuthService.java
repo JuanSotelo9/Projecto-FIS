@@ -42,28 +42,30 @@ public class AuthService {
 
     public AuthResponse register(RegisterRequest request){
         try{
-            User user = User.builder()
-            .kIdusuario(request.getId())
-            .nNombre(request.getNombre() + " " + request.getApellido())
-            .nUsuario(request.getUsuario())
-            .nEmail(request.getEmail())
-            .nPassword(passwordEncoder.encode(request.getPassword()))
-            .role(Role.ROLE_USER)
-            .build();
-            userRepository.save(user);
-            return AuthResponse.builder()
-            .response("Success")
-            .build();
+            if(!userRepository.existsById(Long.parseLong(request.getId()))){
+                    User user = User.builder()
+                .kIdusuario(Long.parseLong(request.getId()))
+                .nNombre(request.getNombre() + " " + request.getApellido())
+                .nUsuario(request.getUsuario())
+                .nEmail(request.getEmail())
+                .nPassword(passwordEncoder.encode(request.getPassword()))
+                .role(Role.ROLE_USER)
+                .build();
+                userRepository.save(user);
+                return AuthResponse.builder()
+                .response("Success")
+                .build();
+            }else{
+                return AuthResponse.builder()
+                .response("Error")
+                .build();
+            }
+            
         }catch(Exception e){
             return AuthResponse.builder()
             .response("Error")
             .build();
 
         }
-        
-
-        
-
-        
     }
 }
