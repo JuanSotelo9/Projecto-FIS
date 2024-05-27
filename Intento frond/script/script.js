@@ -7,7 +7,6 @@
 //   offScreenMenu.classList.toggle("active");
 // });
 
-
 function mover() {
     // Ocultar el botón
     document.getElementById('btnInicioSesion').style.opacity = '0';
