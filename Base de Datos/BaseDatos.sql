@@ -11,9 +11,6 @@ SET FOREIGN_KEY_CHECKS=0
 DROP TABLE IF EXISTS `administrador` CASCADE
 ;
 
-DROP TABLE IF EXISTS `asignar` CASCADE
-;
-
 DROP TABLE IF EXISTS `calificacion_recurso` CASCADE
 ;
 
@@ -63,13 +60,6 @@ CREATE TABLE `administrador`
 
 ;
 
-CREATE TABLE `asignar`
-(
-	`k_idreserva` BIGINT NOT NULL,
-	`k_idrecurso` INT NOT NULL,
-	`f_hora` TIME NOT NULL,
-	CONSTRAINT `PK_Asignar` PRIMARY KEY (`k_idreserva` ASC, `k_idrecurso` ASC)
-)
 
 ;
 
@@ -89,8 +79,8 @@ CREATE TABLE `calificar_reserva`
 	`k_idcalificarreserva` INT NOT NULL,
 	`n_estadocalificacionreserva` SMALLINT NOT NULL,
 	`k_idusuario` BIGINT NOT NULL,
-	`k_idreserva` BIGINT NOT NULL,
-	CONSTRAINT `PK_Calificar_Resrva` PRIMARY KEY (`k_idcalificarreserva` ASC)
+	`k_idreserva` VARCHAR(50) NOT NULL,
+	CONSTRAINT `PK_Calificar_Reserva` PRIMARY KEY (`k_idcalificarreserva` ASC)
 )
 
 ;
@@ -150,7 +140,6 @@ CREATE TABLE `recurso`
 	`n_nombrerecurso` VARCHAR(50) NOT NULL,
 	`n_descripcionrecurso` VARCHAR(255) NOT NULL,
 	`k_idtiporecurso` INT NOT NULL,
-    `n_unidades` INT NOT NULL,
 	CONSTRAINT `PK_Recurso` PRIMARY KEY (`k_idrecurso` ASC)
 )
 
@@ -158,12 +147,13 @@ CREATE TABLE `recurso`
 
 CREATE TABLE `reserva`
 (
-	`k_idreserva` BIGINT NOT NULL,
+	`k_idreserva` VARCHAR(50) NOT NULL,
 	`f_horainicioreserva` TIME NOT NULL,
 	`f_horafinalreserva` TIME NOT NULL,
 	`f_fechareserva` DATE NOT NULL,
 	`n_estadoreserva` VARCHAR(15) NOT NULL,
 	`k_idusuario` BIGINT NOT NULL,
+    `k_idrecurso` INT NOT NULL,
 	CONSTRAINT `PK_Reserva` PRIMARY KEY (`k_idreserva` ASC)
 )
 
@@ -217,15 +207,6 @@ ALTER TABLE `administrador`
 	FOREIGN KEY (`k_idusuario`) REFERENCES `usuario` (`k_idusuario`) ON DELETE Restrict ON UPDATE Restrict
 ;
 
-ALTER TABLE `asignar` 
- ADD CONSTRAINT `FK_Asignar_Recurso`
-	FOREIGN KEY (`k_idrecurso`) REFERENCES `recurso` (`k_idrecurso`) ON DELETE Restrict ON UPDATE Restrict
-;
-
-ALTER TABLE `asignar` 
- ADD CONSTRAINT `FK_Asignar_Reserva`
-	FOREIGN KEY (`k_idreserva`) REFERENCES `reserva` (`k_idreserva`) ON DELETE Restrict ON UPDATE Restrict
-;
 
 ALTER TABLE `calificacion_recurso` 
  ADD CONSTRAINT `FK_Calificacion_Recurso_Recurso`
@@ -238,12 +219,12 @@ ALTER TABLE `calificacion_recurso`
 ;
 
 ALTER TABLE `calificar_reserva` 
- ADD CONSTRAINT `FK_Calificar_Resrva_Reserva`
+ ADD CONSTRAINT `FK_Calificar_Reserva_Reserva`
 	FOREIGN KEY (`k_idreserva`) REFERENCES `reserva` (`k_idreserva`) ON DELETE Restrict ON UPDATE Restrict
 ;
 
 ALTER TABLE `calificar_reserva` 
- ADD CONSTRAINT `FK_Calificar_Resrva_Usuario`
+ ADD CONSTRAINT `FK_Calificar_Reserva_Usuario`
 	FOREIGN KEY (`k_idusuario`) REFERENCES `usuario` (`k_idusuario`) ON DELETE Restrict ON UPDATE Restrict
 ;
 
@@ -275,6 +256,11 @@ ALTER TABLE `recurso`
 ALTER TABLE `reserva` 
  ADD CONSTRAINT `FK_Reserva_Usuario`
 	FOREIGN KEY (`k_idusuario`) REFERENCES `usuario` (`k_idusuario`) ON DELETE Restrict ON UPDATE Restrict
+;
+
+ALTER TABLE `reserva`
+	ADD CONSTRAINT `FK_Reserva_Recurso`
+		FOREIGN KEY (`k_idrecurso`) REFERENCES `recurso` (`k_idrecurso`) ON DELETE Restrict ON UPDATE Restrict
 ;
 
 ALTER TABLE `ser_caracterisado` 
