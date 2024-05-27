@@ -81,11 +81,11 @@ document.querySelector('.modal_close').addEventListener('click', function (e) {
         apellidos: apellidos,
         usuario: usuario,
         email: email,
-        contrasena: contrasena
+        password: contrasena
     };
 
     // Enviar datos al back-end usando Axios
-    axios.post('', data)
+    axios.post('localhost:8080/auth/register', data)
         .then(response => {
             console.log('Registro exitoso', response);
             // Realizar alguna acción tras el éxito del registro
@@ -104,10 +104,10 @@ document.querySelector('.modal_close2').addEventListener('click', function (e) {
 
     const data = {
         usuario: usuario,
-        contraseña: contrasena
+        password: contrasena
     };
 
-    axios.post('', data)
+    axios.post('localhost:8080/auth/login-user', data)
         .then(response => {
             console.log('Inicio de sesión exitoso', response);
             // Realizar alguna acción tras el éxito del inicio de sesión
