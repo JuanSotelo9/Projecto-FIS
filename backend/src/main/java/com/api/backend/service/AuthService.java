@@ -31,10 +31,12 @@ public class AuthService {
             String token = jwtService.getToken(user);
             return AuthResponse.builder()
                 .response(token)
+                .id(user.getKIdusuario())
                 .build();
         }catch(Exception e){
             return AuthResponse.builder()
             .response("Datos Incorrectos")
+            .id(null)
             .build(); 
         }
         
@@ -54,16 +56,19 @@ public class AuthService {
                 userRepository.save(user);
                 return AuthResponse.builder()
                 .response("Success")
+                .id(null)
                 .build();
             }else{
                 return AuthResponse.builder()
                 .response("Error")
+                .id(null)
                 .build();
             }
             
         }catch(Exception e){
             return AuthResponse.builder()
             .response("Error")
+            .id(null)
             .build();
 
         }
