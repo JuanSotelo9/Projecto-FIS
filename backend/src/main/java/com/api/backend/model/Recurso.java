@@ -18,6 +18,6 @@ public class Recurso {
     int kIdrecurso;
     String nNombrerecurso;
     String nDescripcionrecurso;
-    int kIdtipoRecurso;
+    int kIdtiporecurso;
 
 }

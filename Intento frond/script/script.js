@@ -7,6 +7,9 @@
 //   offScreenMenu.classList.toggle("active");
 // });
 
+const api = axios.create({
+    baseURL: 'http://localhost:8080'
+})
 
 function mover() {
     // Ocultar el botón
@@ -67,7 +70,7 @@ document.querySelector('.modal_close').addEventListener('click', function (e) {
     e.preventDefault(); // Prevenir el comportamiento por defecto del enlace
 
     // Obtener los valores de los campos del formulario de registro
-    const cedula = document.querySelector("input[name='cedula']").value;
+    const cedula = document.querySelector("input[name='Cedula']").value;
     const nombre = document.querySelector("input[name='nombres']").value;
     const apellidos = document.querySelector("input[name='Apellidos']").value;
     const usuario = document.querySelector("input[name='Usuario']").value;
@@ -78,20 +81,19 @@ document.querySelector('.modal_close').addEventListener('click', function (e) {
     const data = {
         id: cedula,
         nombre: nombre,
-        apellidos: apellidos,
+        apellido: apellidos,
         usuario: usuario,
         email: email,
         password: contrasena
     };
 
     // Enviar datos al back-end usando Axios
-    axios.post('localhost:8080/auth/register', data)
-        .then(response => {
-            console.log('Registro exitoso', response);
-            // Realizar alguna acción tras el éxito del registro
+    api.post('/auth/register', data)
+        .then(function (response){
+            console.log(response.data)
         })
-        .catch(error => {
-            console.error('Error al registrar', error);
+        .catch(function (error){
+            console.error("Error en la peticion: ", error)
         });
 });
 
@@ -107,12 +109,21 @@ document.querySelector('.modal_close2').addEventListener('click', function (e) {
         password: contrasena
     };
 
-    axios.post('localhost:8080/auth/login-user', data)
-        .then(response => {
-            console.log('Inicio de sesión exitoso', response);
-            // Realizar alguna acción tras el éxito del inicio de sesión
+    let token
+    api.post('/auth/login-user', data)
+        .then(function (response){
+            token = response.data.response;
         })
-        .catch(error => {
-            console.error('Error al iniciar sesión', error);
+        .catch(function (error){
+            console.error("Error en la peticion: ", error)
         });
+
+    api.interceptors.request.use(config => {
+        config.headers.Authorization = `Bearer ${token}`;
+        return config;
+    }, error => {
+        return Promise.reject(error);
+    });   
 });
+
+
