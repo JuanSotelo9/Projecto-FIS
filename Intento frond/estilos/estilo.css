@@ -886,3 +886,67 @@ section {
 
 
 /*Mi cuenta*/
+
+.formulario {
+    background-color: var(--izquierdoIndexOscuro);
+    width: min(60rem, 100%);
+    /*min utiliza el valor más pequeño o si no toma el 100% / Sirve para ahorrarse unos mediaquerys*/
+    margin: 1rem auto;
+    /*sirve para centrar un elemento, por ejemplo un formulario cuyo padre no sea un display flex*/
+    padding: 2rem;
+    border-radius: .5rem;
+    border-color: var(--izquierdoIndexOscuro);
+}
+
+.contenedor-campos {
+    gap: 0.5rem;
+}
+
+.formulario fieldset {
+    border: none;
+}
+
+.formulario legend {
+    text-align: center;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: var(--negro);
+}
+
+
+@media (min-width: 768px) {
+    .contenedor-campos {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        /*2 columnas / 1fr= 1 fraccion del espacio, y que se repita dos veces*/
+        /*grid-template-rows: auto auto 20rem;*/
+        column-gap: 2rem;
+        /*Agregando separación entre columnas*/
+    }
+}
+
+.campo {
+    margin-bottom: 1rem;
+}
+
+.campo label {
+    color: var(--negro);
+    font-weight: bold;
+    margin-bottom: .5rem;
+    display: block;
+}
+
+.campo textarea {
+    height: 10rem;
+}
+
+.input-text {
+    width: 100%;
+    border: none;
+    padding: 1rem;
+    border-radius: .5rem;
+    font-size: 1rem;
+    font-style:italic;
+}
