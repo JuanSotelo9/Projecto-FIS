@@ -90,10 +90,27 @@ document.querySelector('.modal_close').addEventListener('click', function (e) {
     // Enviar datos al back-end usando Axios
     api.post('/auth/register', data)
         .then(function (response){
-            console.log(response.data)        
+            console.log(response.data)  
+
+            const successMessage = document.getElementById('registration-success-message');
+            successMessage.style.display = 'block';
+            successMessage.textContent = 'Registro exitoso.';
+
+            // Limpiar los campos del formulario (opcional)
+            document.querySelector("input[name='Cedula']").value = '';
+            document.querySelector("input[name='nombres']").value = '';
+            document.querySelector("input[name='Apellidos']").value = '';
+            document.querySelector("input[name='Usuario']").value = '';
+            document.querySelector("input[name='email']").value = '';
+            document.querySelector("input[name='Contraseña']").value = '';   
         })
         .catch(function (error){
             console.error("Error en la peticion: ", error)
+             const errorMessage = document.getElementById('registration-error-message');
+            if (errorMessage) {
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = 'Error en el registro. Por favor, inténtelo de nuevo.';
+            }
         });
 });
 
@@ -113,6 +130,7 @@ document.querySelector('.modal_close2').addEventListener('click', function (e) {
     api.post('/auth/login-user', data)
         .then(function (response){
             token = response.data.response;
+            window.location.href = 'homeUser.html';
         })
         .catch(function (error){
             console.error("Error en la peticion: ", error)
@@ -125,5 +143,3 @@ document.querySelector('.modal_close2').addEventListener('click', function (e) {
         return Promise.reject(error);
     });   
 });
-
-
