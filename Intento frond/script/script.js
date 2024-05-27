@@ -90,7 +90,7 @@ document.querySelector('.modal_close').addEventListener('click', function (e) {
     // Enviar datos al back-end usando Axios
     api.post('/auth/register', data)
         .then(function (response){
-            console.log(response.data)
+            console.log(response.data)        
         })
         .catch(function (error){
             console.error("Error en la peticion: ", error)
