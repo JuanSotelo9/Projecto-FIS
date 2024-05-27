@@ -7,6 +7,7 @@
 //   offScreenMenu.classList.toggle("active");
 // });
 
+
 function mover() {
     // Ocultar el botón
     document.getElementById('btnInicioSesion').style.opacity = '0';
@@ -66,6 +67,7 @@ document.querySelector('.modal_close').addEventListener('click', function (e) {
     e.preventDefault(); // Prevenir el comportamiento por defecto del enlace
 
     // Obtener los valores de los campos del formulario de registro
+    const cedula = document.querySelector("input[name='cedula']").value;
     const nombre = document.querySelector("input[name='nombres']").value;
     const apellidos = document.querySelector("input[name='Apellidos']").value;
     const usuario = document.querySelector("input[name='Usuario']").value;
@@ -74,11 +76,12 @@ document.querySelector('.modal_close').addEventListener('click', function (e) {
 
     // Crear el objeto de datos para enviar al back-end
     const data = {
-        nombre,
-        apellidos,
-        usuario,
-        email,
-        contrasena
+        id: cedula,
+        nombre: nombre,
+        apellidos: apellidos,
+        usuario: usuario,
+        email: email,
+        contrasena: contrasena
     };
 
     // Enviar datos al back-end usando Axios
@@ -100,8 +103,8 @@ document.querySelector('.modal_close2').addEventListener('click', function (e) {
     const contrasena = document.querySelector(".form-register2 input[name='Contraseña']").value;
 
     const data = {
-        usuario,
-        contrasena
+        usuario: usuario,
+        contraseña: contrasena
     };
 
     axios.post('', data)
