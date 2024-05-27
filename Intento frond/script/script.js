@@ -86,15 +86,22 @@ document.querySelector('.modal_close').addEventListener('click', function (e) {
         email: email,
         password: contrasena
     };
-
+    var x1;
     // Enviar datos al back-end usando Axios
     api.post('/auth/register', data)
         .then(function (response){
+            x1=response.data.response
             console.log(response.data)  
-
-            const successMessage = document.getElementById('registration-success-message');
-            successMessage.style.display = 'block';
-            successMessage.textContent = 'Registro exitoso.';
+            if(x1=="Success"){
+                const successMessage = document.getElementById('registration-success-message');
+                successMessage.style.display = 'block';
+                successMessage.textContent = 'Registro exitoso.';
+            }
+            if(x1=="Error"){
+                const successMessage = document.getElementById('registration-success-message');
+                successMessage.style.display = 'block';
+                successMessage.textContent = 'Registro fallido.';
+            }
 
             // Limpiar los campos del formulario (opcional)
             document.querySelector("input[name='Cedula']").value = '';
@@ -106,11 +113,6 @@ document.querySelector('.modal_close').addEventListener('click', function (e) {
         })
         .catch(function (error){
             console.error("Error en la peticion: ", error)
-             const errorMessage = document.getElementById('registration-error-message');
-            if (errorMessage) {
-                errorMessage.style.display = 'block';
-                errorMessage.textContent = 'Error en el registro. Por favor, inténtelo de nuevo.';
-            }
         });
 });
 
