@@ -140,6 +140,8 @@ document.querySelector('.modal_close2').addEventListener('click', function (e) {
 
             if(x3!=null){
                 console.log(x3) 
+                localStorage.setItem('userId', x3);
+                localStorage.setItem('token', token);
                 window.location.href = 'homeUser.html';
             }
 

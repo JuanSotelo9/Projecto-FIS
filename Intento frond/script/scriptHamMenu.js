@@ -13,22 +13,26 @@ const api = axios.create({
   baseURL: 'http://localhost:8080'
 });
 
+const userId = localStorage.getItem('userId');
+const token = localStorage.getItem('token');
+
+console.log(userId, token);
+
 document.addEventListener('DOMContentLoaded', function() {
   // ID del usuario
-  const userId = '1000626252'; 
-  // Token de autenticación
-  const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJKdWFucGE5MDkiLCJpYXQiOjE3MTY5Mjg0NTAsImV4cCI6MTcxNjkyOTg5MH0.MwvLRI1qnEBwU4ZWXM1s4C7BTFDrNtgiWs9dnRk_O3Y'; 
+  // const userId = '1000626252'; 
+  // // Token de autenticación
+  // const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJKdWFucGE5MDkiLCJpYXQiOjE3MTY5Mjg0NTAsImV4cCI6MTcxNjkyOTg5MH0.MwvLRI1qnEBwU4ZWXM1s4C7BTFDrNtgiWs9dnRk_O3Y'; 
 
-  api.get(`/user?id=${userId}`, {
+  api.get(`/user/${userId}`, {
       headers: {
           'Authorization': `Bearer ${token}`
       }
   })
   .then(function(response) {
       const userData = response.data;
-
       // Actualizar los campos en el formulario con los datos del usuario
-      document.getElementById('nombreCompleto').value = `${userData.nombre} ${userData.apellido}`;
+      document.getElementById('nombreCompleto').value = userData.nombre;
       document.getElementById('usuario').value = userData.usuario;
       document.getElementById('correo').value = userData.email;
   })
