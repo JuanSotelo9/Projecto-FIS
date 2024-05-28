@@ -24,6 +24,7 @@
             <li><a href="micuenta.html">Mi Cuenta</a></li>
             <li><a href="#">Contactanos</a></li>
         </ul>
+        <button type="submit" class="btnLogOut">Cerrar Sesión</button>
     </div>
 
     <nav class="navbar">
@@ -55,23 +56,21 @@
                     <div class="contenedor-campos">
     
                         <div class="campo">
-                            <label>Nombres</label>
-                            <input class="input-text" type="text" readonly value="Juan Angel">
-                        </div>
-    
-                        <div class="campo">
-                            <label>Apellidos</label>
-                            <input class="input-text" type="text" readonly value="Perez Riveros">
+                            <label>Nombre Completo:</label>
+                            <input class="input-text" type="text" readonly id="nombreCompleto">
                         </div>
                         <div class="campo">
-                            <label>Usuario</label>
-                            <input class="input-text" type="text" readonly value="JuanchoRi315*">
+                            <label>Usuario:</label>
+                            <input class="input-text" type="text" readonly id="usuario">
                         </div>
                         <div class="campo">
-                            <label>Contraseña</label>
-                            <input class="input-text" type="text" readonly value="********">
+                            <label>Correo:</label>
+                            <input class="input-text" type="text" readonly id="correo">
                         </div>
                      </div>
+                     <div class="alinear-derecha">
+                       <button type="submit" class="btnLogOut">Cerrar Sesión</button>
+                    </div>
                 </fieldset>
             </form>
         </div>
@@ -79,7 +78,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    <script src="script/script.js"></script>
+    <script src="script/scriptHamMenu.js"></script>
 </body>
 
 </html>
