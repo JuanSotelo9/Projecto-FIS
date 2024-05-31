@@ -2,6 +2,7 @@ package com.api.backend.service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -38,5 +39,9 @@ public class ReservaService {
     private String generarId(){
         LocalDateTime now = LocalDateTime.now();
         return now.format(formatter);
+    }
+
+    public List<Reserva> getReservas(Long idUser){
+        return reservaRepository.findBykIdusuario(idUser);
     }
 }
