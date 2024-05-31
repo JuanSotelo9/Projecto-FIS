@@ -3,10 +3,10 @@ package com.api.backend.controller;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.backend.model.DisponibilidadRequest;
@@ -29,7 +29,7 @@ public class UserController {
     private final ReservaService reservaService;
 
     @GetMapping("/{id}")
-    public UserResponse getUser(@RequestParam Long id){
+    public UserResponse getUser(@PathVariable Long id){
         return userService.getUser(id);
     }
 
@@ -51,4 +51,5 @@ public class UserController {
             return false;
         }
     }
+
 }

@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class TipoRecurso {
     
     @Id
-    private int kIdtipoRecurso;
+    private int kIdtiporecurso;
     private String nNombretiporecurso;
     private String nDescripciontiporecurso;
 }

@@ -7,6 +7,10 @@
 //   offScreenMenu.classList.toggle("active");
 // });
 
+const api = axios.create({
+    baseURL: 'http://localhost:8080'
+})
+
 function mover() {
     // Ocultar el botón
     document.getElementById('btnInicioSesion').style.opacity = '0';
@@ -66,6 +70,7 @@ document.querySelector('.modal_close').addEventListener('click', function (e) {
     e.preventDefault(); // Prevenir el comportamiento por defecto del enlace
 
     // Obtener los valores de los campos del formulario de registro
+    const cedula = document.querySelector("input[name='Cedula']").value;
     const nombre = document.querySelector("input[name='nombres']").value;
     const apellidos = document.querySelector("input[name='Apellidos']").value;
     const usuario = document.querySelector("input[name='Usuario']").value;
@@ -74,21 +79,40 @@ document.querySelector('.modal_close').addEventListener('click', function (e) {
 
     // Crear el objeto de datos para enviar al back-end
     const data = {
-        nombre,
-        apellidos,
-        usuario,
-        email,
-        contrasena
+        id: cedula,
+        nombre: nombre,
+        apellido: apellidos,
+        usuario: usuario,
+        email: email,
+        password: contrasena
     };
-
+    var x1;
     // Enviar datos al back-end usando Axios
-    axios.post('', data)
-        .then(response => {
-            console.log('Registro exitoso', response);
-            // Realizar alguna acción tras el éxito del registro
+    api.post('/auth/register', data)
+        .then(function (response){
+            x1=response.data.response
+            console.log(response.data)  
+            if(x1=="Success"){
+                const successMessage = document.getElementById('registration-success-message');
+                successMessage.style.display = 'block';
+                successMessage.textContent = 'Registro exitoso.';
+            }
+            if(x1=="Error"){
+                const successMessage = document.getElementById('registration-success-message');
+                successMessage.style.display = 'block';
+                successMessage.textContent = 'Registro fallido.';
+            }
+
+            // Limpiar los campos del formulario (opcional)
+            document.querySelector("input[name='Cedula']").value = '';
+            document.querySelector("input[name='nombres']").value = '';
+            document.querySelector("input[name='Apellidos']").value = '';
+            document.querySelector("input[name='Usuario']").value = '';
+            document.querySelector("input[name='email']").value = '';
+            document.querySelector("input[name='Contraseña']").value = '';   
         })
-        .catch(error => {
-            console.error('Error al registrar', error);
+        .catch(function (error){
+            console.error("Error en la peticion: ", error)
         });
 });
 
@@ -100,16 +124,41 @@ document.querySelector('.modal_close2').addEventListener('click', function (e) {
     const contrasena = document.querySelector(".form-register2 input[name='Contraseña']").value;
 
     const data = {
-        usuario,
-        contrasena
+        usuario: usuario,
+        password: contrasena
     };
 
-    axios.post('', data)
-        .then(response => {
-            console.log('Inicio de sesión exitoso', response);
-            // Realizar alguna acción tras el éxito del inicio de sesión
+    let token
+    var x2;
+    var x3=0;
+    api.post('/auth/login-user', data)
+        .then(function (response){
+            x2=response.data.response
+            x3=response.data.id
+            console.log(response.data)  
+            token = response.data.response;
+
+            if(x3!=null){
+                console.log(x3) 
+                localStorage.setItem('userId', x3);
+                localStorage.setItem('token', token);
+                window.location.href = 'homeUser.html';
+            }
+
+            if(x2=="Datos Incorrectos"){
+                const successMessage2 = document.getElementById('login-success-message');
+                successMessage2.style.display = 'block';
+                successMessage2.textContent = 'Usuario o contraseña incorrectos';
+            }
         })
-        .catch(error => {
-            console.error('Error al iniciar sesión', error);
+        .catch(function (error){
+            console.error("Error en la peticion: ", error)
         });
+
+    api.interceptors.request.use(config => {
+        config.headers.Authorization = `Bearer ${token}`;
+        return config;
+    }, error => {
+        return Promise.reject(error);
+    });   
 });

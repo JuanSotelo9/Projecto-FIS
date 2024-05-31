@@ -6,6 +6,7 @@
     <title>PrestamosUD</title>
     <link rel="stylesheet" href="estilos/estilo.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 
@@ -43,12 +44,15 @@
             </h2>
             <div class="modal_figure">
                 <section class="form-register">
-                    <input class="controls" type="text" name="nombres" id="Usuario" placeholder="Ingrese su nombres">
-                    <input class="controls" type="text" name="Apellidos" id="Usuario" placeholder="Ingrese su Apellidos">
+                    <input class="controls" type="text" name="Cedula" id="Cedula" placeholder="Ingrese su cedula">
+                    <input class="controls" type="text" name="nombres" id="Nombre" placeholder="Ingrese su nombres">
+                    <input class="controls" type="text" name="Apellidos" id="Apellido" placeholder="Ingrese su Apellidos">
                     <input class="controls" type="text" name="Usuario" id="Usuario" placeholder="Ingrese su Usuario">
-                    <input class="controls" type="email" name="email" id="email"placeholder="Ingrese su Email">
+                    <input class="controls" type="email" name="email" id="Email"placeholder="Ingrese su Email">
                     <input class="controls" type="password" name="Contraseña" id="Contraseña" placeholder="Ingrese su Contraseña">
                     <p>Estoy de acuerdo con <a >Terminos y condiciones</a></p>
+                    <div id="registration-success-message" style="display: none; color: green;">...
+                    </div>
                 </section>
             </div>
 
@@ -64,17 +68,21 @@
             </h2>
             <div class="modal_figure2">
                 <section class="form-register2">
-                    <input class="controls2" type="text" name="Usuario" id="Usuario" placeholder="Ingrese su Usuario">
-                    <input class="controls2" type="password" name="Contraseña" id="Contraseña" placeholder="Ingrese su Contraseña">
+                    <input class="controls2" type="text" name="Usuario" id="Usuario1" placeholder="Ingrese su Usuario">
+                    <input class="controls2" type="password" name="Contraseña" id="Contraseña1" placeholder="Ingrese su Contraseña">
                     <a href="#modal" id="registrarseLink" class="mandarRegistro">Registrarse</a>
+                    <div id="login-success-message" style="display: none; color: green;">...
+                    </div>
                 </section>
             </div>
             <a href="#header2" class="modal_close2">Entrar</a>
         </div>
     </section>
-
+    
     <!-- Script -->
-    <script src="script/script.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    <script src="script/script.js"></script>
 </body>
 </html>

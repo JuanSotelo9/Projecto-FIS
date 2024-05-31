@@ -625,7 +625,6 @@ section {
     border: 0;
     background-color: var(--bgColor);
     border-radius: 0 0.2rem 0.2rem 0;
-    /*background-color: var(--boton);*/
     transition: opacity 0.3s ease;
 }
 
@@ -888,14 +887,16 @@ section {
 /*Mi cuenta*/
 
 .formulario {
-    background-color: var(--izquierdoIndexOscuro);
+    background-color: var(--primario);
     width: min(60rem, 100%);
     /*min utiliza el valor más pequeño o si no toma el 100% / Sirve para ahorrarse unos mediaquerys*/
     margin: 1rem auto;
     /*sirve para centrar un elemento, por ejemplo un formulario cuyo padre no sea un display flex*/
     padding: 2rem;
     border-radius: .5rem;
-    border-color: var(--izquierdoIndexOscuro);
+    border-width: 3px;
+    border-style: outset;
+    border-color: var(--negro);
 }
 
 .contenedor-campos {
@@ -950,3 +951,38 @@ section {
     font-size: 1rem;
     font-style:italic;
 }
+
+.alinear-derecha{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btnLogOut{
+    background-color: var(--blanco);
+    padding: 10px 6px;
+    margin-top: 2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: .5rem; /*Propiedad para redondear bordes*/
+    width: 90%;
+    text-align: center;
+    border: none;
+    border-width: 3px;
+    border-style: groove;
+    border-color: var(--negro);
+    transition: opacity 0.3s ease;
+    transition: color 0.3s ease;
+    }
+    
+    .btnLogOut:hover{
+        cursor: pointer;
+        background-color: var(--izquierdoIndex);
+        opacity: 0.7;         
+    }
+    
+    @media (min-width: 480px) {
+        .btnLogOut{
+            width: auto;
+        }
+    }
