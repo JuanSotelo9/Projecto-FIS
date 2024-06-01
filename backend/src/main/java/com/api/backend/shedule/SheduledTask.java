@@ -26,7 +26,7 @@ public class SheduledTask {
     private final DisponibilidadRepository disponibilidadRepository;
     private final PoseerRepository poseerRepository;
 
-    @Scheduled(cron = "0 34 * * * *")
+    @Scheduled(cron = "0 0 * * * *")
     public void sheduledTask(){
 
         LocalDate date = LocalDate.now();
