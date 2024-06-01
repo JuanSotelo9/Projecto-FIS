@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.backend.model.CalificarRequest;
 import com.api.backend.model.DisponibilidadRequest;
 import com.api.backend.model.ReservarRequest;
 import com.api.backend.model.UserResponse;
@@ -55,5 +56,10 @@ public class UserController {
     @PostMapping("/cancelar/{id}")
     public String cancelarReserva(@PathVariable("id") String idReserva){
         return reservaService.cancelarReserva(idReserva);
+    }
+
+    @PostMapping("/calificar")
+    public String calificarReserva(@RequestBody CalificarRequest calificacion){
+        return reservaService.calificarReserva(calificacion.getIdReserva(), calificacion.getCalificacion());
     }
 }

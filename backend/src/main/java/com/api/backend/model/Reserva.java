@@ -26,4 +26,5 @@ public class Reserva {
     String nEstadoreserva;
     Long kIdusuario;
     int kIdrecurso;
+    int nCalificacion;
 }
