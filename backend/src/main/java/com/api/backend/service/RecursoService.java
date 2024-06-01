@@ -16,6 +16,7 @@ import com.api.backend.model.Recurso;
 import com.api.backend.repository.DisponibilidadRepository;
 import com.api.backend.repository.PoseerRepository;
 import com.api.backend.repository.RecursoRepository;
+import com.api.backend.repository.ReservaRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,13 +27,30 @@ public class RecursoService {
     private final RecursoRepository recursoRepository;
     private final DisponibilidadRepository disponibilidadRepository;
     private final PoseerRepository poseerRepository;
+    private final ReservaRepository reservaRepository;
 
     public Optional<Recurso> getRecurso(int id){
-        return recursoRepository.findById(id);
+        Optional<Recurso> recurso = recursoRepository.findById(id);
+        if(recurso.isPresent()){
+            recurso.get().setCalificacion(calificacionPromedio(id));
+            return recurso;
+        }else{
+            return recurso;
+        }
+        
     }
 
     public List<Recurso> getRecursos(){
-        return recursoRepository.findAll();
+        List<Recurso> recursos = recursoRepository.findAll();
+        if(recursos.isEmpty()){
+            return recursos;
+        }else{
+            for(Recurso recurso : recursos){
+                recurso.setCalificacion(calificacionPromedio(recurso.getKIdrecurso()));
+            }
+            return recursos;
+        }
+        
     }
 
     public boolean saveRecurso(Recurso recurso){
@@ -65,5 +83,21 @@ public class RecursoService {
     public void deleteDisponibilidad(int idRecurso, Date dia, Time horaInicio){
         Disponibilidad disponibilidad = disponibilidadRepository.findByAvailability(dia, horaInicio);
         poseerRepository.deleteDisponibilidad(idRecurso, disponibilidad.getKIddisponibilidad());
+    }
+
+    public float calificacionPromedio(int idRecurso){
+        List<Integer> calificaciones = reservaRepository.findCalificacion(idRecurso, "finalizado");
+        float promedio = 0;
+        if(calificaciones.isEmpty()){
+            return promedio;
+        }else{
+            for(int numero : calificaciones){
+                promedio += numero;
+            }
+            promedio /= calificaciones.size();
+            String format = String.format("%.1f", promedio);
+            format = format.replace(",", ".");
+            return Float.parseFloat(format);
+        }
     }
 }
