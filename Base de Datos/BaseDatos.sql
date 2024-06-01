@@ -11,12 +11,6 @@ SET FOREIGN_KEY_CHECKS=0
 DROP TABLE IF EXISTS `administrador` CASCADE
 ;
 
-DROP TABLE IF EXISTS `calificacion_recurso` CASCADE
-;
-
-DROP TABLE IF EXISTS `calificar_reserva` CASCADE
-;
-
 DROP TABLE IF EXISTS `caracteristicas` CASCADE
 ;
 
@@ -60,34 +54,9 @@ CREATE TABLE `administrador`
 
 ;
 
-
-;
-
-CREATE TABLE `calificacion_recurso`
-(
-	`k_idcalificacion` INT NOT NULL,
-	`n_estadocalificacionrecurso` SMALLINT NOT NULL,
-	`k_idusuario` BIGINT NOT NULL,
-	`k_idrecurso` INT NOT NULL,
-	CONSTRAINT `PK_Calificacion` PRIMARY KEY (`k_idcalificacion` ASC)
-)
-
-;
-
-CREATE TABLE `calificar_reserva`
-(
-	`k_idcalificarreserva` INT NOT NULL,
-	`n_estadocalificacionreserva` SMALLINT NOT NULL,
-	`k_idusuario` BIGINT NOT NULL,
-	`k_idreserva` VARCHAR(50) NOT NULL,
-	CONSTRAINT `PK_Calificar_Reserva` PRIMARY KEY (`k_idcalificarreserva` ASC)
-)
-
-;
-
 CREATE TABLE `caracteristicas`
 (
-	`k_idcaracteristicas` INT NOT NULL,
+	`k_idcaracteristicas` INT NOT NULL AUTO_INCREMENT,
 	`n_descripcioncaracteristica` VARCHAR(255) NOT NULL,
 	CONSTRAINT `PK_Caracteristicas` PRIMARY KEY (`k_idcaracteristicas` ASC)
 )
@@ -96,7 +65,7 @@ CREATE TABLE `caracteristicas`
 
 CREATE TABLE `disponibilidad`
 (
-	`k_iddisponibilidad` INT NOT NULL,
+	`k_iddisponibilidad` INT NOT NULL AUTO_INCREMENT,
 	`f_horainiciodisponibilidad` TIME NOT NULL,
 	`f_horafinaldisponibilidad` TIME NOT NULL,
 	`f_diadisponibilidad` DATE NOT NULL,
@@ -116,7 +85,7 @@ CREATE TABLE `gestionar`
 
 CREATE TABLE `horario_laboral`
 (
-	`k_idhorariolavoral` INT NOT NULL,
+	`k_idhorariolavoral` INT NOT NULL AUTO_INCREMENT,
 	`f_horainicio` TIME NOT NULL,
 	`f_horafinal` TIME NOT NULL,
 	`f_dia` DATE NOT NULL,
@@ -136,7 +105,7 @@ CREATE TABLE `poseer`
 
 CREATE TABLE `recurso`
 (
-	`k_idrecurso` INT NOT NULL,
+	`k_idrecurso` INT NOT NULL AUTO_INCREMENT,
 	`n_nombrerecurso` VARCHAR(50) NOT NULL,
 	`n_descripcionrecurso` VARCHAR(255) NOT NULL,
 	`k_idtiporecurso` INT NOT NULL,
@@ -154,6 +123,7 @@ CREATE TABLE `reserva`
 	`n_estadoreserva` VARCHAR(15) NOT NULL,
 	`k_idusuario` BIGINT NOT NULL,
     `k_idrecurso` INT NOT NULL,
+    `n_calificacion` INT NOT NULL,
 	CONSTRAINT `PK_Reserva` PRIMARY KEY (`k_idreserva` ASC)
 )
 
@@ -179,7 +149,7 @@ CREATE TABLE `tener`
 
 CREATE TABLE `tipo_de_recurso`
 (
-	`k_idtiporecurso` INT NOT NULL,
+	`k_idtiporecurso` INT NOT NULL AUTO_INCREMENT,
 	`n_nombretiporecurso` VARCHAR(50) NOT NULL,
 	`n_descripciontiporecurso` VARCHAR(255) NOT NULL,
 	CONSTRAINT `PK_Tipo_De_Recurso` PRIMARY KEY (`k_idtiporecurso` ASC)
@@ -204,27 +174,6 @@ COMMENT = 'persona que interactua con la aplicacion'
 
 ALTER TABLE `administrador` 
  ADD CONSTRAINT `FK_Administrador_Usuario`
-	FOREIGN KEY (`k_idusuario`) REFERENCES `usuario` (`k_idusuario`) ON DELETE Restrict ON UPDATE Restrict
-;
-
-
-ALTER TABLE `calificacion_recurso` 
- ADD CONSTRAINT `FK_Calificacion_Recurso_Recurso`
-	FOREIGN KEY (`k_idrecurso`) REFERENCES `recurso` (`k_idrecurso`) ON DELETE Restrict ON UPDATE Restrict
-;
-
-ALTER TABLE `calificacion_recurso` 
- ADD CONSTRAINT `FK_Calificacion_Recurso_Usuario`
-	FOREIGN KEY (`k_idusuario`) REFERENCES `usuario` (`k_idusuario`) ON DELETE Restrict ON UPDATE Restrict
-;
-
-ALTER TABLE `calificar_reserva` 
- ADD CONSTRAINT `FK_Calificar_Reserva_Reserva`
-	FOREIGN KEY (`k_idreserva`) REFERENCES `reserva` (`k_idreserva`) ON DELETE Restrict ON UPDATE Restrict
-;
-
-ALTER TABLE `calificar_reserva` 
- ADD CONSTRAINT `FK_Calificar_Reserva_Usuario`
 	FOREIGN KEY (`k_idusuario`) REFERENCES `usuario` (`k_idusuario`) ON DELETE Restrict ON UPDATE Restrict
 ;
 
