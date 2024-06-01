@@ -29,7 +29,7 @@ public class UserController {
     private final ReservaService reservaService;
 
     @GetMapping("/{id}")
-    public UserResponse getUser(@PathVariable Long id){
+    public UserResponse getUser(@PathVariable("id") Long id){
         return userService.getUser(id);
     }
 
@@ -52,4 +52,8 @@ public class UserController {
         }
     }
 
+    @PostMapping("/cancelar/{id}")
+    public String cancelarReserva(@PathVariable("id") String idReserva){
+        return reservaService.cancelarReserva(idReserva);
+    }
 }

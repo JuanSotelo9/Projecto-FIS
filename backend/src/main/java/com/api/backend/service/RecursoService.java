@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.api.backend.model.Disponibilidad;
 import com.api.backend.model.DisponibilidadRequest;
+import com.api.backend.model.Poseer;
+import com.api.backend.model.PoseerId;
 import com.api.backend.model.Recurso;
 import com.api.backend.repository.DisponibilidadRepository;
 import com.api.backend.repository.PoseerRepository;
@@ -49,6 +51,14 @@ public class RecursoService {
     public boolean consultarDisponibilidad(DisponibilidadRequest request){
         Disponibilidad disponibilidad = disponibilidadRepository.findByAvailability(request.getDiaDisponibilidad(), request.getHoraInicio());
         return disponibilidad != null && poseerRepository.consultarDisponibilidad(request.getIdRecurso(), disponibilidad.getKIddisponibilidad()) != null;
+    }
+
+    public int getIdDisponibilidad(Date dia, Time horaInicio){
+        return disponibilidadRepository.findByAvailability(dia, horaInicio).getKIddisponibilidad();
+    }
+
+    public void crearRecursoDisponibilidad(int idRecurso, int idDisponibilidad){
+        poseerRepository.save(new Poseer(new PoseerId(idRecurso, idDisponibilidad)));
     }
 
     @Transactional
