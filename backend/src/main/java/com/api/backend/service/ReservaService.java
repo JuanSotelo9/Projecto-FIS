@@ -35,6 +35,7 @@ public class ReservaService {
         reserva.setNEstadoreserva("reservado");
         reserva.setKIdusuario(request.getIdUsuario());
         reserva.setKIdrecurso(request.getIdRecurso());
+        reserva.setNCalificacion(0);
         try {
             reservaRepository.save(reserva);
             return true;
@@ -77,7 +78,33 @@ public class ReservaService {
         }else{
             return "reserva no existe";
         }
-        
+
+    }
+
+    public String calificarReserva(String idReserva, int calificacion){
+        Optional<Reserva> reserva = reservaRepository.findById(idReserva);
+        if(reserva.isPresent()){
+            if(reserva.get().getNEstadoreserva().equals("finalizado")){
+                if(reserva.get().getNCalificacion() == 0){
+                    if(calificacion > 0 && calificacion <= 5){
+                        reserva.get().setNCalificacion(calificacion);
+                        reservaRepository.save(reserva.get());
+                        return "calificado";
+                    }else{
+                        return "valor invalido";
+                    }
+                    
+                }else{
+                    return "reserva ya calificada";
+                }
+                
+            }else{
+                return "reserva no ha finalizado";
+            }
+            
+        }else{
+            return "reserva no existe";
+        }
         
     }
 }
