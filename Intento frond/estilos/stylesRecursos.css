@@ -52,6 +52,11 @@ header .buscar button {
     margin-left: 5px;
     cursor: pointer;
 }
+
+header .buscar #allBtn {
+    margin-left: 20px;
+}
+
 header .buscar button:hover {
     background-color: #1f92b8;
 }
