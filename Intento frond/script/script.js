@@ -231,10 +231,10 @@ document.querySelector('.modal_close2').addEventListener('click', function (e) {
             console.error("Error en la peticion: ", error)
         });
 
-    api.interceptors.request.use(config => {
-        config.headers.Authorization = `Bearer ${token}`;
-        return config;
-    }, error => {
-        return Promise.reject(error);
-    });   
+    // api.interceptors.request.use(config => {
+    //     config.headers.Authorization = `Bearer ${token}`;
+    //     return config;
+    // }, error => {
+    //     return Promise.reject(error);
+    // });   
 });
