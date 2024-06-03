@@ -34,7 +34,7 @@ public class UserController {
         return userService.getUser(id);
     }
 
-    @GetMapping("/disponibilidad")
+    @PostMapping("/disponibilidad")
     public boolean getDisponibilidad(@RequestBody DisponibilidadRequest request){
         return recursoService.consultarDisponibilidad(request);
     }

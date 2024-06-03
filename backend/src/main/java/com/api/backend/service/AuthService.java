@@ -24,6 +24,7 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
 
     public AuthResponse loginUser(LoginRequest request){
+        
         try{
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsuario(), request.getPassword()));
             User user = userRepository.findBynUsuario(request.getUsuario()).orElseThrow();
@@ -45,22 +46,38 @@ public class AuthService {
     public AuthResponse register(RegisterRequest request){
         try{
             if(!userRepository.existsById(Long.parseLong(request.getId()))){
-                    User user = User.builder()
-                .kIdusuario(Long.parseLong(request.getId()))
-                .nNombre(request.getNombre() + " " + request.getApellido())
-                .nUsuario(request.getUsuario())
-                .nEmail(request.getEmail())
-                .nPassword(passwordEncoder.encode(request.getPassword()))
-                .role(Role.ROLE_USER)
-                .build();
-                userRepository.save(user);
-                return AuthResponse.builder()
-                .response("Success")
-                .id(null)
-                .build();
+                if(!userRepository.findBynUsuario(request.getUsuario()).isPresent()){
+                    if(!userRepository.findBynEmail(request.getEmail()).isPresent()){
+                        User user = User.builder()
+                        .kIdusuario(Long.parseLong(request.getId()))
+                        .nNombre(request.getNombre() + " " + request.getApellido())
+                        .nUsuario(request.getUsuario())
+                        .nEmail(request.getEmail())
+                        .nPassword(passwordEncoder.encode(request.getPassword()))
+                        .role(Role.ROLE_USER)
+                        .build();
+                        userRepository.save(user);
+                        return AuthResponse.builder()
+                        .response("Success")
+                        .id(null)
+                        .build();
+                    }else{
+                        return AuthResponse.builder()
+                        .response("correo ya registrado")
+                        .id(null)
+                        .build();
+                    }
+                    
+                }else{
+                    return AuthResponse.builder()
+                    .response("usuario ya registrado")
+                    .id(null)
+                    .build();
+                }
+                
             }else{
                 return AuthResponse.builder()
-                .response("Error")
+                .response("id ya registrado")
                 .id(null)
                 .build();
             }
