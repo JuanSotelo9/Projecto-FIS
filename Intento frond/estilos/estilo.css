@@ -1029,7 +1029,7 @@ table a {
     color: white;
     border-radius: 4px;
     cursor: pointer;
-    /* transition: background-color 0.3s ease; */
+    transition: background-color 0.3s ease;
 }
 table a:hover {
     background-color: #1f92b8;
