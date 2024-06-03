@@ -19,11 +19,7 @@ const token = localStorage.getItem('token');
 console.log(userId, token);
 
 document.addEventListener('DOMContentLoaded', function() {
-  // ID del usuario
-  // const userId = '1000626252'; 
-  // // Token de autenticación
-  // const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJKdWFucGE5MDkiLCJpYXQiOjE3MTY5Mjg0NTAsImV4cCI6MTcxNjkyOTg5MH0.MwvLRI1qnEBwU4ZWXM1s4C7BTFDrNtgiWs9dnRk_O3Y'; 
-
+  
   api.get(`/user/${userId}`, {
       headers: {
           'Authorization': `Bearer ${token}`
@@ -42,4 +38,31 @@ document.addEventListener('DOMContentLoaded', function() {
   .finally(function() {
       console.log('Petición a la API completada.');
   });
+});
+
+document.getElementById('cerrarsesionsiosi').addEventListener('click', function() {
+  // Borrar información de la sesión
+  sessionStorage.clear();
+  localStorage.clear();
+  
+  // Redirigir al usuario fuera de la sesión
+  window.location.href = 'index.html';
+  
+  // Agregar una entrada al historial para prevenir regresar
+  window.history.pushState(null, null, window.location.href);
+});
+
+// Función para mostrar el mensaje de error
+function showError() {
+  const errorMessage = document.createElement('div');
+  errorMessage.id = 'errorMessage';
+  errorMessage.textContent = 'No es posible regresar. Error';
+  document.body.appendChild(errorMessage);
+  errorMessage.style.display = 'block';
+}
+
+// Escuchar el evento popstate para interceptar la navegación hacia atrás
+window.addEventListener('popstate', function(event) {
+  showError();
+  window.history.pushState(null, null, window.location.href);
 });
