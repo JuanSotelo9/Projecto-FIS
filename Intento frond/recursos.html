@@ -14,8 +14,9 @@
                 <a href="homeUser.html"><i class="fas fa-home"></i></a>
             </div>
             <div class="buscar">
-                <input type="text" id="search-input" placeholder="Buscar">
+                <input type="text" id="search-input" placeholder="Buscar por nombre">
                 <button onclick="buscar()">Buscar</button>
+                <button onclick="traerTodo()" id="allBtn">Todos</button>
             </div>
             <div class="session-icon">
                 <a href="micuenta.html"><i class="fas fa-user"></i></a>
@@ -33,18 +34,11 @@
                     </tr>
                 </thead>
                 <tbody class="table-body">
-                    <!--<tr>
-                        <td>001</td>
-                        <td>Nombre</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
-                        <td><button onclick="reservar()">Reservar</button></td>
-                    </tr> -->
-                    <!-- Los resultados se insertarán aquí dinámicamente -->
                 </tbody>
             </table>
         </div>
     </div>
-    <script src="./script/scriptRecursos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./script/scriptRecursos.js"></script>
 </body>
 </html>

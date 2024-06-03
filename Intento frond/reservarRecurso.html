@@ -20,9 +20,9 @@
         </header>
         <div class="content">
             <div class="text">
-                <h2>Nombre Producto</h2>
+                <h2 id="nombreProducto"></h2>
                 <h3>Descripción:</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p id="descripcionProducto"></p>
             </div>
             <div class="search">
                 <h3>Consultar Disponibilidad</h3>
@@ -36,9 +36,10 @@
                 </div>
                 <button id="consultar">Consultar</button>
             </div>
-            <button id="reservar" disabled>Reservar</button>
+            <button id="reservar">Reservar</button>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./script/scriptReservarRecurso.js"></script>
 </body>
 </html>
