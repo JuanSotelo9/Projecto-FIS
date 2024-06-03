@@ -26,7 +26,7 @@ function obtenerRecursos(nombreRecurso = '') {
         let recursoEncontrado = false;
 
         recursos.forEach(recurso => {
-            if(nombreRecurso && recurso.nnombrerecurso.toLowerCase() !== nombreRecurso.toLowerCase()) {
+            if(nombreRecurso && !recurso.nnombrerecurso.toLowerCase().includes(nombreRecurso.toLowerCase())) {
                 return; // Salta este recurso si no coincide con el nombreRecurso
             }
             recursoEncontrado = true;
