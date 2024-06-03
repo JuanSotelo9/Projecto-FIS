@@ -40,6 +40,10 @@ public class RecursoService {
         
     }
 
+    public List<Recurso> getRecursosByTipo(int tipoRecurso){
+        return recursoRepository.findBykIdtiporecurso(tipoRecurso);
+    }
+
     public List<Recurso> getRecursos(){
         List<Recurso> recursos = recursoRepository.findAll();
         if(recursos.isEmpty()){
