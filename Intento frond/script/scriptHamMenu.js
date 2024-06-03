@@ -19,11 +19,7 @@ const token = localStorage.getItem('token');
 console.log(userId, token);
 
 document.addEventListener('DOMContentLoaded', function() {
-  // ID del usuario
-  // const userId = '1000626252'; 
-  // // Token de autenticación
-  // const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJKdWFucGE5MDkiLCJpYXQiOjE3MTY5Mjg0NTAsImV4cCI6MTcxNjkyOTg5MH0.MwvLRI1qnEBwU4ZWXM1s4C7BTFDrNtgiWs9dnRk_O3Y'; 
-
+  
   api.get(`/user/${userId}`, {
       headers: {
           'Authorization': `Bearer ${token}`
