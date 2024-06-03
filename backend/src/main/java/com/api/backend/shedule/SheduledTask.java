@@ -16,6 +16,8 @@ import com.api.backend.repository.DisponibilidadRepository;
 import com.api.backend.repository.PoseerRepository;
 import com.api.backend.repository.ReservaRepository;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.persistence.PostLoad;
 import lombok.RequiredArgsConstructor;
 
 @Component
@@ -26,9 +28,10 @@ public class SheduledTask {
     private final DisponibilidadRepository disponibilidadRepository;
     private final PoseerRepository poseerRepository;
 
+    @PostConstruct
     @Scheduled(cron = "0 0 * * * *")
     public void sheduledTask(){
-
+        System.out.println("Hola");
         LocalDate date = LocalDate.now();
         Date currentDate = Date.valueOf(date);
         LocalTime time = LocalTime.now();
@@ -42,9 +45,15 @@ public class SheduledTask {
         List<Disponibilidad> disponibilidades = disponibilidadRepository.findAll();
         
         for(Disponibilidad disponibilidad : disponibilidades){
-            
-            if((disponibilidad.getFDiadisponibilidad().before(currentDate) 
-                || disponibilidad.getFDiadisponibilidad().equals(currentDate)) 
+            if(disponibilidad.getFDiadisponibilidad().before(currentDate)){
+                List<Poseer> poseer = poseerRepository.findBykIddisponibilidad(disponibilidad.getKIddisponibilidad());
+                for(Poseer p : poseer){
+                    poseerRepository.delete(p);
+                }
+                disponibilidadRepository.delete(disponibilidad);
+            }
+
+            if((disponibilidad.getFDiadisponibilidad().equals(currentDate)) 
                     && (disponibilidad.getFHorainiciodisponibilidad().before(currentTime) 
                         || disponibilidad.getFHorainiciodisponibilidad().equals(currentTime))){
                 List<Poseer> poseer = poseerRepository.findBykIddisponibilidad(disponibilidad.getKIddisponibilidad());
@@ -60,7 +69,6 @@ public class SheduledTask {
     public void actualizarEstadosReservas(Date currentDate, Time currentTime){
         List<Reserva> reservas = reservaRepository.findAll();
         for(Reserva reserva : reservas){
-
             //Actualizar estado de reservado a en progreso
             if(reserva.getFFechareserva().equals(currentDate) 
                 && reserva.getFHorainicioreserva().equals(currentTime) 
@@ -69,9 +77,14 @@ public class SheduledTask {
                 reservaRepository.save(reserva);
             }
 
-            if((reserva.getFFechareserva().equals(currentDate) || reserva.getFFechareserva().before(currentDate))
+            if(reserva.getFFechareserva().before(currentDate) && (reserva.getNEstadoreserva().equals("en progreso") || reserva.getNEstadoreserva().equals("reservado"))){
+                reserva.setNEstadoreserva("finalizado");
+                reservaRepository.save(reserva);
+            }
+
+            if((reserva.getFFechareserva().equals(currentDate))
                 && (reserva.getFHorafinalreserva().equals(currentTime) || reserva.getFHorafinalreserva().before(currentTime))
-                    && reserva.getNEstadoreserva().equals("en progreso")){
+                    && (reserva.getNEstadoreserva().equals("en progreso") || reserva.getNEstadoreserva().equals("reservado"))){
                         reserva.setNEstadoreserva("finalizado");
                         reservaRepository.save(reserva);
                     }
