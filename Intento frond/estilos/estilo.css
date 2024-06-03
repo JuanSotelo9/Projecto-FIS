@@ -618,7 +618,7 @@ section {
     font-size: 1rem;
 }
 
-.search-bar button {
+.search-bar a {
     cursor: pointer;
     padding: 0.5rem;
     font-size: 1rem;
