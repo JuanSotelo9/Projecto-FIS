@@ -39,3 +39,30 @@ document.addEventListener('DOMContentLoaded', function() {
       console.log('Petición a la API completada.');
   });
 });
+
+document.getElementById('cerrarsesionsiosi').addEventListener('click', function() {
+  // Borrar información de la sesión
+  sessionStorage.clear();
+  localStorage.clear();
+  
+  // Redirigir al usuario fuera de la sesión
+  window.location.href = 'index.html';
+  
+  // Agregar una entrada al historial para prevenir regresar
+  window.history.pushState(null, null, window.location.href);
+});
+
+// Función para mostrar el mensaje de error
+function showError() {
+  const errorMessage = document.createElement('div');
+  errorMessage.id = 'errorMessage';
+  errorMessage.textContent = 'No es posible regresar. Error';
+  document.body.appendChild(errorMessage);
+  errorMessage.style.display = 'block';
+}
+
+// Escuchar el evento popstate para interceptar la navegación hacia atrás
+window.addEventListener('popstate', function(event) {
+  showError();
+  window.history.pushState(null, null, window.location.href);
+});
