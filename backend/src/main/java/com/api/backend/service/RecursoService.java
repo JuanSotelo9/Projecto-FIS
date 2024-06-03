@@ -67,8 +67,19 @@ public class RecursoService {
     }
 
     public boolean consultarDisponibilidad(DisponibilidadRequest request){
-        Disponibilidad disponibilidad = disponibilidadRepository.findByAvailability(request.getDiaDisponibilidad(), request.getHoraInicio());
-        return disponibilidad != null && poseerRepository.consultarDisponibilidad(request.getIdRecurso(), disponibilidad.getKIddisponibilidad()) != null;
+        if(request.getHoraInicio().getTime() < request.getHoraFinal().getTime()){
+            for(long hora = request.getHoraInicio().getTime(); hora < request.getHoraFinal().getTime(); hora= hora+3600000){
+                Disponibilidad disponibilidad = disponibilidadRepository.findByAvailability(request.getDiaDisponibilidad(), new Time(hora));
+                if(!(disponibilidad != null && poseerRepository.consultarDisponibilidad(request.getIdRecurso(), disponibilidad.getKIddisponibilidad()) != null)){
+                    return false;
+                }
+            }
+            
+            return true;
+        }else{
+            return false;
+        }
+        
     }
 
     public int getIdDisponibilidad(Date dia, Time horaInicio){
@@ -80,9 +91,12 @@ public class RecursoService {
     }
 
     @Transactional
-    public void deleteDisponibilidad(int idRecurso, Date dia, Time horaInicio){
-        Disponibilidad disponibilidad = disponibilidadRepository.findByAvailability(dia, horaInicio);
-        poseerRepository.deleteDisponibilidad(idRecurso, disponibilidad.getKIddisponibilidad());
+    public void deleteDisponibilidad(int idRecurso, Date dia, Time horaInicio, Time horaFinal){
+        for(long hora = horaInicio.getTime(); hora < horaFinal.getTime(); hora= hora+3600000){
+            Disponibilidad disponibilidad = disponibilidadRepository.findByAvailability(dia, new Time(hora));
+            poseerRepository.deleteDisponibilidad(idRecurso, disponibilidad.getKIddisponibilidad());
+        }
+        
     }
 
     public float calificacionPromedio(int idRecurso){

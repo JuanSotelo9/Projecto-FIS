@@ -41,9 +41,9 @@ public class UserController {
 
     @PostMapping("/reservar")
     public boolean reservarRecurso(@RequestBody ReservarRequest request){
-        if(recursoService.consultarDisponibilidad(new DisponibilidadRequest(request.getDia(), request.getHoraInicio(), request.getIdRecurso()))){
+        if(recursoService.consultarDisponibilidad(new DisponibilidadRequest(request.getDia(), request.getHoraInicio(), request.getHoraFinal(), request.getIdRecurso()))){
             if(reservaService.reservarRecurso(request)){
-                recursoService.deleteDisponibilidad(request.getIdRecurso(), request.getDia(), request.getHoraInicio());
+                recursoService.deleteDisponibilidad(request.getIdRecurso(), request.getDia(), request.getHoraInicio(), request.getHoraFinal());
                 return true;
             }else{
                 return false;
