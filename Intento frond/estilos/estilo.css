@@ -958,13 +958,13 @@ section {
 }
 
 .btnLogOut{
-    background-color: var(--blanco);
+    /* background-color: var(--blanco); */
     padding: 10px 6px;
     margin-top: 2rem;
-    text-decoration: none;
+    text-decoration: none; 
     text-transform: uppercase;
     font-weight: bold;
-    border-radius: .5rem; /*Propiedad para redondear bordes*/
+    border-radius: .5rem; 
     width: 90%;
     text-align: center;
     border: none;
@@ -973,81 +973,80 @@ section {
     border-color: var(--negro);
     transition: opacity 0.3s ease;
     transition: color 0.3s ease;
-    }
+}
     
-    .btnLogOut:hover{
-        cursor: pointer;
-        background-color: var(--izquierdoIndex);
-        opacity: 0.7;         
-    }
-    
-    @media (min-width: 480px) {
-        .btnLogOut{
-            width: auto;
-        }
-    }
+.btnLogOut:hover{
+    cursor: pointer;
+    background-color: var(--izquierdoIndex);
+    opacity: 0.7;         
+}
 
-    /*Historial Reservas*/
+@media (min-width: 480px) {
+    .btnLogOut{
+        width: auto;
+    }
+}
 
-
-    table {
-        width: 100%;
-        margin-top: .5rem;
-        border-collapse: separate; /* Separar los bordes de las celdas */
-        border-spacing: 0; /* Eliminar el espacio entre celdas */
-        border: 1px solid #ddd; /* Añadir borde exterior a la tabla */
-        border-radius: 10px; /* Bordes redondeados */
-        overflow: hidden; /* Asegurar que las esquinas redondeadas se apliquen correctamente */
-    }
-    table thead {
-        text-align: center;
-    }
-    
-    table th, table td {
-        border: 1px solid #ddd;
-        padding: 10px;
-        text-align: center;
-    }
-    
-    .table-body td{
-    background-color: var(--blanco);
-    font-style: italic;
-    }
+/*Historial Reservas*/
 
 
-    table thead th {
-        background-color: #1f92b8;
-        color: #ffffff;
-    }
-    table tr:hover {
-        background-color: #e2e2e2;
-    }
-    table button {
-        padding: 5px 10px;
-        border: none;
-        background-color: #afafaf;
-        color: white;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    table button:hover {
-        background-color: #1f92b8;
-    }
-    .table-container {
-        max-height: 400px;
-        overflow-y: auto;
-    }
-    .th-id {
-        width: 10%;
-    }
-    .th-nr {
-        width: 30%;
-    }
-    .th-ds {
-        width: 55%;
-    }
-    .th-op {
-        width: 5%;
-    }
-    
+table {
+    width: 100%;
+    margin-top: .5rem;
+    border-collapse: separate; /* Separar los bordes de las celdas */
+    border-spacing: 0; /* Eliminar el espacio entre celdas */
+    border: 1px solid #ddd; /* Añadir borde exterior a la tabla */
+    border-radius: 10px; /* Bordes redondeados */
+    overflow: hidden; /* Asegurar que las esquinas redondeadas se apliquen correctamente */
+}
+table thead {
+    text-align: center;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.table-body td{
+background-color: var(--blanco);
+font-style: italic;
+}
+
+
+table thead th {
+    background-color: #1f92b8;
+    color: #ffffff;
+}
+table tr:hover {
+    background-color: #e2e2e2;
+}
+table a {
+    padding: 5px 5px;
+    border: none;
+    background-color: #afafaf;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    /* transition: background-color 0.3s ease; */
+}
+table a:hover {
+    background-color: #1f92b8;
+}
+.table-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+.th-id {
+    width: 10%;
+}
+.th-nr {
+    width: 30%;
+}
+.th-ds {
+    width: 55%;
+}
+.th-op {
+    width: 5%;
+}
