@@ -31,6 +31,26 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('nombreCompleto').value = userData.nombre;
       document.getElementById('usuario').value = userData.usuario;
       document.getElementById('correo').value = userData.email;
+      Histo=response.data.historial
+      document.getElementById('id_reserva').textContent = Histo[0].kidreserva;
+      document.getElementById('fecha_reserva').textContent = Histo[0].ffechareserva;
+      document.getElementById('hora_inicio').textContent = Histo[0].fhorainicioreserva;
+      document.getElementById('hora_fin').textContent = Histo[0].fhorafinalreserva;
+      document.getElementById('estado_reserva').textContent = Histo[0].nestadoreserva;
+      idrecurso=Histo[0].kidrecurso
+      console.log(Histo[0].ffechareserva)
+      api.get(`/recursos/${idrecurso}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+      } 
+      })
+      .then(function(response) {
+        document.getElementById('nombre_recurso').textContent = response.data.nnombrerecurso;
+      
+      })
+      .catch(function(error) {
+        console.error('Error al obtener los datos del recurso:', error);
+      })
   })
   .catch(function(error) {
       console.error('Error al obtener los datos del usuario:', error);
