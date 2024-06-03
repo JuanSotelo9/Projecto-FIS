@@ -31,4 +31,8 @@ public class RecursoController {
         return recursoService.getRecurso(id);
     }
     
+    @GetMapping("/tipo/{id}")
+    public List<Recurso> getRecursosByTipo(@PathVariable int id){
+        return recursoService.getRecursosByTipo(id);
+    }
 }

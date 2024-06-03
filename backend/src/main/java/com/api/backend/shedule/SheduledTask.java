@@ -31,7 +31,6 @@ public class SheduledTask {
     @PostConstruct
     @Scheduled(cron = "0 0 * * * *")
     public void sheduledTask(){
-        System.out.println("Hola");
         LocalDate date = LocalDate.now();
         Date currentDate = Date.valueOf(date);
         LocalTime time = LocalTime.now();
