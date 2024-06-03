@@ -9,7 +9,7 @@
     <meta name="keywords" content="Prestamos UD, Reservar Aulas y Laboratorios" />
     <meta property="og:image" content="./images/previewAula1.webp" />
     <link rel="stylesheet" href="estilos/estilo.css" />
-
+    
     <title>Mi Cuenta - PrestamosUD</title>
 </head>
 
@@ -73,8 +73,49 @@
                     </div>
                 </fieldset>
             </form>
+            
+            <div class="formulario">
+            <legend>Historial de Reservas</legend>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="th-id">ID Reserva</th>
+                            <th class="th-nr">Fecha Reserva</th>
+                            <th class="th-ds">Estado</th>
+                            <th class="th-op">Opción</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-body">
+                        <tr>
+                            <td id="id_reserva">001</td>
+                            <td id="nombre_recurso">Laboratorio de Computación 507</td>
+                            <td id="estado_reserva">Reserva Finalizada
+                            </td>
+                            <td>
+                                <a target="_blank" href="https://forms.gle/EB8xzEFSBkMW6mHk7">
+                                    <button id="calificar_button" disabled>Calificar</button>
+                                </a>
+                            </td>
+                            
+                        </tr>
+                        <!-- Los resultados se insertarán aquí dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
         </div>
     </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const estadoReserva = document.getElementById('estado_reserva').textContent.trim();
+            const calificarButton = document.getElementById('calificar_button');
+            
+            if (estadoReserva === 'Reserva Finalizada') {
+                calificarButton.disabled = false;
+            }
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
