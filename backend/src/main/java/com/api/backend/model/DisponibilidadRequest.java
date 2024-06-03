@@ -14,5 +14,6 @@ public class DisponibilidadRequest {
     
     Date diaDisponibilidad;
     Time horaInicio;
+    Time horaFinal;
     int idRecurso;
 }
