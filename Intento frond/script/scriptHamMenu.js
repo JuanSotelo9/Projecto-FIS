@@ -1,5 +1,4 @@
 
-
 const hamMenu = document.querySelector(".ham-menu");
 
 const offScreenMenu = document.querySelector(".off-screen-menu");
@@ -33,12 +32,14 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('correo').value = userData.email;
       Histo=response.data.historial
       document.getElementById('id_reserva').textContent = Histo[0].kidreserva;
+      idreservaparaenviar=Histo[0].kidreserva
       document.getElementById('fecha_reserva').textContent = Histo[0].ffechareserva;
       document.getElementById('hora_inicio').textContent = Histo[0].fhorainicioreserva;
       document.getElementById('hora_fin').textContent = Histo[0].fhorafinalreserva;
       document.getElementById('estado_reserva').textContent = Histo[0].nestadoreserva;
       idrecurso=Histo[0].kidrecurso
       console.log(Histo[0].ffechareserva)
+      localStorage.setItem('idreservaparaenviar', idreservaparaenviar);
       api.get(`/recursos/${idrecurso}`, {
         headers: {
           'Authorization': `Bearer ${token}`
