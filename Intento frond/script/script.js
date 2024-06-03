@@ -67,15 +67,78 @@ window.onload = function() {
 };
 
 document.querySelector('.modal_close').addEventListener('click', function (e) {
-    e.preventDefault(); // Prevenir el comportamiento por defecto del enlace
+    e.preventDefault();
 
     // Obtener los valores de los campos del formulario de registro
-    const cedula = document.querySelector("input[name='Cedula']").value;
-    const nombre = document.querySelector("input[name='nombres']").value;
-    const apellidos = document.querySelector("input[name='Apellidos']").value;
-    const usuario = document.querySelector("input[name='Usuario']").value;
-    const email = document.querySelector("input[name='email']").value;
-    const contrasena = document.querySelector("input[name='Contraseña']").value;
+    const cedula = document.querySelector("input[name='Cedula']").value.trim();
+    const nombre = document.querySelector("input[name='nombres']").value.trim();
+    const apellidos = document.querySelector("input[name='Apellidos']").value.trim();
+    const usuario = document.querySelector("input[name='Usuario']").value.trim();
+    const email = document.querySelector("input[name='email']").value.trim();
+    const contrasena = document.querySelector("input[name='Contraseña']").value.trim();
+
+    // Limpiar mensajes de error anteriores
+    document.getElementById('cedula-error').textContent = '';
+    document.getElementById('nombres-error').textContent = '';
+    document.getElementById('apellidos-error').textContent = '';
+    document.getElementById('usuario-error').textContent = '';
+    document.getElementById('email-error').textContent = '';
+    document.getElementById('contrasena-error').textContent = '';
+
+    function validarEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+    function validarContrasena(contrasena) {
+        const tieneMayuscula = /[A-Z]/.test(contrasena);
+        const tieneSimbolo = /[!@#$%^&*(),.?":{}|<>]/.test(contrasena);
+        const longitudValida = contrasena.length >= 6;
+        return tieneMayuscula && tieneSimbolo && longitudValida;
+    }
+
+    function validarSoloNumeros(cedula) {
+        const re = /^[0-9]+$/;
+        return re.test(cedula);
+    }
+    
+    let valid = true;
+    if (!cedula) {
+        document.getElementById('cedula-error').textContent = 'La cédula es requerida.';
+        valid = false;
+    } else if (!validarSoloNumeros(cedula)) {
+        document.getElementById('cedula-error').textContent = 'La cédula solo debe contener números.';
+        valid = false;
+    }
+    if (!nombre) {
+        document.getElementById('nombres-error').textContent = 'El nombre es requerido.';
+        valid = false;
+    }
+    if (!apellidos) {
+        document.getElementById('apellidos-error').textContent = 'El apellido es requerido.';
+        valid = false;
+    }
+    if (!usuario) {
+        document.getElementById('usuario-error').textContent = 'El usuario es requerido.';
+        valid = false;
+    }
+    if (!email) {
+        document.getElementById('email-error').textContent = 'El email es requerido.';
+        valid = false;
+    } else if (!validarEmail(email)) {
+        document.getElementById('email-error').textContent = 'Por favor, ingrese un correo electrónico válido.';
+        valid = false;
+    }
+    if (!contrasena) {
+        document.getElementById('contrasena-error').textContent = 'La contraseña es requerida.';
+        valid = false;
+    } else if (!validarContrasena(contrasena)) {
+        document.getElementById('contrasena-error').textContent = 'La contraseña debe tener al menos 6 caracteres, un símbolo y una letra mayúscula.';
+        valid = false;
+    }
+    if (!valid) {
+        return;
+    }
 
     // Crear el objeto de datos para enviar al back-end
     const data = {
@@ -86,21 +149,33 @@ document.querySelector('.modal_close').addEventListener('click', function (e) {
         email: email,
         password: contrasena
     };
+
     var x1;
     // Enviar datos al back-end usando Axios
     api.post('/auth/register', data)
-        .then(function (response){
-            x1=response.data.response
-            console.log(response.data)  
-            if(x1=="Success"){
-                const successMessage = document.getElementById('registration-success-message');
-                successMessage.style.display = 'block';
-                successMessage.textContent = 'Registro exitoso.';
+        .then(function (response) {
+            x1 = response.data.response;
+            console.log(response.data);
+            const successMessage = document.getElementById('registration-success-message');
+            successMessage.style.display = 'block';
+            if(x1=='id ya registrado'){
+                successMessage.textContent = 'Cedula ya registrada.';
+                successMessage.style.color = 'red';
             }
-            if(x1=="Error"){
-                const successMessage = document.getElementById('registration-success-message');
-                successMessage.style.display = 'block';
+            if(x1=='usuario ya registrado'){
+                successMessage.textContent = 'Usuario ya registrado.';
+                successMessage.style.color = 'red';
+            }
+            if(x1=='correo ya registrado'){
+                successMessage.textContent = 'Correo ya registrado.';
+                successMessage.style.color = 'red';
+            }
+            if (x1 == "Success") {
+                successMessage.textContent = 'Registro exitoso.';
+                successMessage.style.color = 'green';
+            } else if (x1 == "Error") {
                 successMessage.textContent = 'Registro fallido.';
+                successMessage.style.color = 'red';
             }
 
             // Limpiar los campos del formulario (opcional)
@@ -109,12 +184,13 @@ document.querySelector('.modal_close').addEventListener('click', function (e) {
             document.querySelector("input[name='Apellidos']").value = '';
             document.querySelector("input[name='Usuario']").value = '';
             document.querySelector("input[name='email']").value = '';
-            document.querySelector("input[name='Contraseña']").value = '';   
+            document.querySelector("input[name='Contraseña']").value = '';
         })
-        .catch(function (error){
-            console.error("Error en la peticion: ", error)
+        .catch(function (error) {
+            console.error("Error en la petición: ", error);
         });
 });
+
 
 document.querySelector('.modal_close2').addEventListener('click', function (e) {
     e.preventDefault();
