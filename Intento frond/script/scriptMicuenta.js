@@ -41,24 +41,26 @@ function cancelarReserva(idReserva){
   })
 }
 
-function obtenerNombre(idrecurso) {
-  api.get(`/recursos/${idrecurso}`, {
-    headers: {
-      'Authorization': `Bearer ${token}`
-    }
-  })
-  .then(function(response) {
-    let nombreRecurso1 = response.data.nnombrerecurso;
-    console.log('Dentro: ', nombreRecurso1);
-    return nombreRecurso1;
-  })
-  .catch(function(error) {
-    console.error('Error al obtener los datos del recurso:', error);
+async function obtenerNombre(idrecurso) {
+  return new Promise((resolve, reject) => {
+    api.get(`/recursos/${idrecurso}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(function(response) {
+      let nombreRecurso = response.data.nnombrerecurso;
+      resolve(nombreRecurso);
+    })
+    .catch(function(error) {
+      console.error('Error al obtener los datos del recurso:', error);
+      reject(error);
+    });
   });
 }
 
-document.addEventListener('DOMContentLoaded', function() {  
-  api.get(`/user/${userId}`, {
+document.addEventListener('DOMContentLoaded', async function() {  
+  await api.get(`/user/${userId}`, {
       headers: {
           'Authorization': `Bearer ${token}`
       }
@@ -90,11 +92,10 @@ document.addEventListener('DOMContentLoaded', function() {
           flag += 1;
           console.log(idrecurso);
           
-          nombreRecurso = obtenerNombre(idrecurso);
-          console.log("Desp", nombreRecurso);
+          nombreRecurso = await obtenerNombre(idrecurso);
 
           const nombreCell = document.createElement('td');
-          nombreCell.textContent = "No";
+          nombreCell.textContent = nombreRecurso;
           row.appendChild(nombreCell);
 
           const fechaCell = document.createElement('td');
