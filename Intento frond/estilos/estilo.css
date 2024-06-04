@@ -658,7 +658,7 @@ section {
 .selector_container {
     position: absolute;
     top: 100px;
-    max-width: 48rem;
+    max-width: 70rem;
     width: 100%;
     /* height: fit-content; */
     margin-inline: 5rem;
@@ -889,7 +889,8 @@ section {
 /*Mi cuenta*/
 
 .formulario {
-   display: flex;
+    position: relative;
+    display: flex;
    
     background-color: var(--primario);
     width: min(60rem, 100%);
@@ -902,6 +903,12 @@ section {
     border-style: outset;
     border-color: var(--negro);
     box-sizing: border-box;
+}
+#formmicuenta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .contenedor-campos {
@@ -1000,6 +1007,8 @@ section {
 
 
 table {
+    position: relative;
+    top :10%;
     width: 100%;
     margin-top: .5rem;
     border-collapse: separate; /* Separar los bordes de las celdas */
@@ -1007,6 +1016,11 @@ table {
     border: 1px solid #ddd; /* Añadir borde exterior a la tabla */
     border-radius: 10px; /* Bordes redondeados */
     overflow: hidden; /* Asegurar que las esquinas redondeadas se apliquen correctamente */
+}
+#legendintento{
+    position: fixed;
+    padding: 0;
+    margin: 0;
 }
 table thead {
     text-align: center;
