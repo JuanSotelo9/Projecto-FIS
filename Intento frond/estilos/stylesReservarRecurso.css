@@ -72,7 +72,7 @@ header h2 {
     margin-bottom: 45px;
 }
 #fecha,
-#horarios {
+.fielHour {
     width: 40%;
     padding: 5px;
     border: 1px solid #ccc;
@@ -94,7 +94,7 @@ header h2 {
     width: 30%;
     margin-bottom: 10px;
 }
-#horarios {
+.fielHour {
     width: 42.5%;
 }
 .content button:hover {

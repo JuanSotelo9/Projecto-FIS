@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Traer y mostrar info basica del recurso
 function obtenerRecurso() {
+    
     api.get(`/recursos/${idRecurso}`, {
         headers: {
             'Authorization': `Bearer ${token}`
@@ -23,7 +24,6 @@ function obtenerRecurso() {
     })
     .then(function (response){
         const recurso = response.data;
-        console.log(recurso);
 
         const titulo = document.getElementById('nombreProducto');
         titulo.textContent = `${recurso.nnombrerecurso}`;
@@ -95,6 +95,7 @@ function reservarRecurso() {
         console.log(response);
         if(estado) {
             alert('Reserva exitosa');
+            window.location.href = "micuenta.html";
         } else {
             alert('No se pudo realizar la reserva');
         }
@@ -108,7 +109,7 @@ function reservarRecurso() {
 // Mostrar horarios según el dia
 document.getElementById('fecha').addEventListener('change', function() {
     const fechaInput = document.getElementById('fecha').value;
-    const horariosSelect = document.getElementById('horarios');
+    const horaInicio = document.getElementById('horaInicio');
 
     if (fechaInput) {
         const fecha = new Date(fechaInput);
@@ -116,15 +117,10 @@ document.getElementById('fecha').addEventListener('change', function() {
         flag = false;
         let horarios = [];
 
-        if (diaSemana >= 1 && diaSemana <= 5) {
-            // Lunes a viernes, 6am - 4pm
-            for (let i = 6; i < 16; i += 1) {
-                horarios.push(`${i}:00 - ${i + 1}:00`);
-            }
-        } else if (diaSemana === 6) {
-            // Sábado, 8am - 12pm
-            for (let i = 8; i < 12; i += 1) {
-                horarios.push(`${i}:00 - ${i + 1}:00`);
+        if (diaSemana >= 1 && diaSemana <= 6) {
+            // Lunes a viernes, 6am - 8pm
+            for (let i = 6; i < 20; i += 1) {
+                horarios.push(`${i}:00`);
             }
         } else {
             // Domingo
@@ -132,43 +128,79 @@ document.getElementById('fecha').addEventListener('change', function() {
         }
 
         // Limpiar opciones previas
-        horariosSelect.innerHTML = '<option value="">Seleccionar horario</option>';
+        horaInicio.innerHTML = '<option value="">Seleccionar horario</option>';
 
         if (horarios.length > 0) {
             horarios.forEach(horario => {
                 const option = document.createElement('option');
                 option.value = horario;
                 option.textContent = horario;
-                horariosSelect.appendChild(option);
+                horaInicio.appendChild(option);
             });
-            horariosSelect.disabled = false;
+            horaInicio.disabled = false;
         } else {
-            horariosSelect.disabled = true;
+            horaInicio.disabled = true;
         }
     } else {
-        horariosSelect.innerHTML = '<option value="">Seleccionar horario</option>';
-        horariosSelect.disabled = true;
+        horaInicio.innerHTML = '<option value="">Seleccionar horario</option>';
+        horaInicio.disabled = true;
     }
+
+    
 });
 
 
-document.getElementById('horarios').addEventListener('change', function() {
+document.getElementById('horaInicio').addEventListener('change', function() {
     flag = false;
+    const horaInicio = document.getElementById('horaInicio').value;
+    const horaFinal = document.getElementById('horaFinal');
+
+    if(horaInicio){
+        let horarios = [];
+        const partes = horaInicio.split(":")
+
+        for (let i = Number(partes[0])+1; i < 21; i += 1) {
+            horarios.push(`${i}:00`);
+        }
+        horaFinal.innerHTML = '<option value="">Seleccionar horario</option>';
+
+        if (horarios.length > 0) {
+            horarios.forEach(horario => {
+                const option = document.createElement('option');
+                option.value = horario;
+                option.textContent = horario;
+                horaFinal.appendChild(option);
+            });
+            horaFinal.disabled = false;
+        } else {
+            horaFinal.disabled = true;
+        }
+    }else{
+        horaFinal.innerHTML = '<option value="">Seleccionar horario</option>';
+        horaFinal.disabled = true;
+    }
+
+    
+
 });
+
+document.getElementById('horaFinal').addEventListener('change', function(){
+    flag = false;
+})
 
 // Click en consultar
 document.getElementById('consultar').addEventListener('click', function() {
     const fechaInput = document.getElementById('fecha').value;
-    const horariosSelect = document.getElementById('horarios').value;
+    let horaInicio = document.getElementById('horaInicio').value;
+    let horaFinal = document.getElementById('horaFinal').value;
 
-    if (!(fechaInput && horariosSelect)) {
+    if (!(fechaInput && horaInicio && horaFinal)) {
         alert('Por favor, seleccione una fecha y un horario.');
         return;
     }
 
-    const partes = horariosSelect.split(" - ");
-    const horaInicio = partes[0] + ":00";
-    const horaFinal = partes[1] + ":00";
+    horaInicio  += ":00";
+    horaFinal += ":00";
 
     const fecha = new Date(fechaInput);
     const diaSiguiente = new Date(fecha);

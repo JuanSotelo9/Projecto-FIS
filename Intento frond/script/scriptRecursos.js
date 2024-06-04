@@ -3,6 +3,7 @@ const api = axios.create({
 });
 
 const token = localStorage.getItem('token');
+let opcion = localStorage.getItem('idTipo');
 
 // Se ejecuta al cargar la página
 document.addEventListener('DOMContentLoaded', function() {
@@ -12,14 +13,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Trae y muestra los recursos en la tabla
 function obtenerRecursos(nombreRecurso = '') {
-    api.get('/recursos', {
+    let url;
+    if(opcion == 0){
+        url = '/recursos';
+    }else{
+        url = `/recursos/tipo/${opcion}`
+    }
+    api.get(url, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
     })
     .then(function (response){
         const recursos = response.data;
-        console.log(recursos);
 
         const tableBody = document.querySelector('.table-body');
         tableBody.innerHTML = ''; // Limpiar resultados anteriores
@@ -79,7 +85,7 @@ function buscar() {
     }
 }
 
-// Click en todo
 function traerTodo() {
+    opcion = 0;
     obtenerRecursos();
 }

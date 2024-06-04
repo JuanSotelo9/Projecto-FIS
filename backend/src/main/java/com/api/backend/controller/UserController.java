@@ -53,7 +53,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/cancelar/{id}")
+    @GetMapping("/cancelar/{id}")
     public String cancelarReserva(@PathVariable("id") String idReserva){
         return reservaService.cancelarReserva(idReserva);
     }

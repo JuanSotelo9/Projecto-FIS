@@ -29,9 +29,15 @@
                 <label for="fecha" id="f">Fecha:</label>
                 <input type="date" id="fecha">
                 <div>
-                    <label for="horarios" id="h">Hora:</label>
-                    <select id="horarios" disabled>
-                        <option value="">Seleccionar horario</option>
+                    <label for="horarios">Hora Inicio:</label>
+                    <select class="fielHour" id="horaInicio" disabled>
+                        <option value="">Seleccionar hora</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="horarios">Hora Final:</label>
+                    <select class="fielHour" id="horaFinal" disabled>
+                        <option value="">Seleccionar hora</option>
                     </select>
                 </div>
                 <button id="consultar">Consultar</button>
