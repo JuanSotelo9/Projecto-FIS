@@ -67,33 +67,35 @@
                             <label>Correo:</label>
                             <input class="input-text" type="text" readonly id="correo">
                         </div>
+                        <div class="alinear-derecha">
+                            <a href="index.html" id="cerrarsesionsiosi" type="submit" class="btnLogOut" >Cerrar Sesión</a>
+                         </div>
                      </div>
-                     <div class="alinear-derecha">
-                       <a href="index.html" id="cerrarsesionsiosi" type="submit" class="btnLogOut" >Cerrar Sesión</a>
-                    </div>
                 </fieldset>
             </form>
             
             <div class="formulario" id="historialmicuenta">
-            <legend>Historial de Reservas</legend>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th class="th-id">ID Reserva</th>
-                            <th class="th-nb">Nombre del recurso</th>
-                            <th class="th-nr">Fecha Reserva</th>
-                            <th class="th-hi">Hora incial</th>
-                            <th class="th-hf">Hora final</th>
-                            <th class="th-ds">Estado</th>
-                            <th class="th-op">Calificación</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-body">
-                        
-                        <!-- Los resultados se insertarán aquí dinámicamente -->
-                    </tbody>
-                </table>
+                <fieldset class="fieldset-container">
+                    <legend id="legendintento">Historial de Reservas</legend>
+                </fieldset>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="th-id">ID Reserva</th>
+                                <th class="th-nb">Nombre del recurso</th>
+                                <th class="th-nr">Fecha Reserva</th>
+                                <th class="th-hi">Hora inicial</th>
+                                <th class="th-hf">Hora final</th>
+                                <th class="th-ds">Estado</th>
+                                <th class="th-op">Calificación</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-body">
+                            <!-- Los resultados se insertarán aquí dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         </div>
