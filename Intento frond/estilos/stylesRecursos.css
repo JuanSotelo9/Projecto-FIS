@@ -113,7 +113,10 @@ table button:hover {
     width: 30%;
 }
 .th-ds {
-    width: 55%;
+    width: 50%;
+}
+.th-cl {
+    width: 5%;
 }
 .th-op {
     width: 5%;

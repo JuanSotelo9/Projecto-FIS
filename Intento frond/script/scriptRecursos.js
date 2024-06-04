@@ -45,6 +45,10 @@ function obtenerRecursos(nombreRecurso = '') {
             descripcionCell.textContent = recurso.ndescripcionrecurso;
             row.appendChild(descripcionCell);
 
+            const calificacionCell = document.createElement('td');
+            calificacionCell.textContent = recurso.calificacion;
+            row.appendChild(calificacionCell);
+            
             const opcionCell = document.createElement('td');
             const reservarButton = document.createElement('button');
             reservarButton.textContent = 'Reservar';
