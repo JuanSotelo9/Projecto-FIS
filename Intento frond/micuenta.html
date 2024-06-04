@@ -90,18 +90,7 @@
                         </tr>
                     </thead>
                     <tbody class="table-body">
-                        <tr>
-                            <td id="id_reserva">001</td>
-                            <td id="nombre_recurso">Laboratorio de Computación 507</td>
-                            <td id="fecha_reserva">2024-06-05</td>
-                            <td id="hora_inicio">08:00:00</td>
-                            <td id="hora_fin">09:00:00</td>
-                            <td id="estado_reserva">Reserva Finalizada</td>
-                            <td>
-                                <a href="calificar.html" id="calificar_button" disabled>Calificar</a>
-                            </td>
-                            
-                        </tr>
+                        
                         <!-- Los resultados se insertarán aquí dinámicamente -->
                     </tbody>
                 </table>
@@ -109,16 +98,6 @@
         </div>
         </div>
     </main>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const estadoReserva = document.getElementById('estado_reserva').textContent.trim();
-            const calificarButton = document.getElementById('calificar_button');
-            
-            if (estadoReserva === 'Reserva Finalizada') {
-                calificarButton.disabled = false;
-            }
-        });
-    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 

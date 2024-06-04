@@ -3,7 +3,6 @@ const hamMenu = document.querySelector(".ham-menu");
 const offScreenMenu = document.querySelector(".off-screen-menu");
 
 hamMenu.addEventListener("click", () => {
-
   hamMenu.classList.toggle("active");
   offScreenMenu.classList.toggle("active");
 });
@@ -14,11 +13,51 @@ const api = axios.create({
 
 const userId = localStorage.getItem('userId');
 const token = localStorage.getItem('token');
+let nombreRecurso;
 
-console.log(userId, token);
+function cancelarReserva(idReserva){
+  api.get(`/user/cancelar/${idReserva}`, {
+    headers: {
+      'Authorization' : `Bearer ${token}`
+    }
+  })
+  .then(function(response){
+    if(response.data === "reserva no existe"){
+      alert("reserva no existe");
+    }
+    if(response.data === "reserva no esta en estado reservado"){
+      alert("reserva no esta en estado reservado");
+    }
+    if(response.data === "cancelado"){
+      alert("Reserva cancelada con exito");
+    }
+    if(response.data === "fuera de plazo"){
+      alert("Fuera de plazo para cancelar");
+    }
+    window.location.href = "micuenta.html";
+  })
+  .catch(function(error){
+    console.error(error)
+  })
+}
 
-document.addEventListener('DOMContentLoaded', function() {
-  
+function obtenerNombre(idrecurso) {
+  api.get(`/recursos/${idrecurso}`, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+  .then(function(response) {
+    let nombreRecurso1 = response.data.nnombrerecurso;
+    console.log('Dentro: ', nombreRecurso1);
+    return nombreRecurso1;
+  })
+  .catch(function(error) {
+    console.error('Error al obtener los datos del recurso:', error);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {  
   api.get(`/user/${userId}`, {
       headers: {
           'Authorization': `Bearer ${token}`
@@ -30,28 +69,73 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('nombreCompleto').value = userData.nombre;
       document.getElementById('usuario').value = userData.usuario;
       document.getElementById('correo').value = userData.email;
-      Histo=response.data.historial
-      document.getElementById('id_reserva').textContent = Histo[0].kidreserva;
-      idreservaparaenviar=Histo[0].kidreserva
-      document.getElementById('fecha_reserva').textContent = Histo[0].ffechareserva;
-      document.getElementById('hora_inicio').textContent = Histo[0].fhorainicioreserva;
-      document.getElementById('hora_fin').textContent = Histo[0].fhorafinalreserva;
-      document.getElementById('estado_reserva').textContent = Histo[0].nestadoreserva;
-      idrecurso=Histo[0].kidrecurso
-      console.log(Histo[0].ffechareserva)
-      localStorage.setItem('idreservaparaenviar', idreservaparaenviar);
-      api.get(`/recursos/${idrecurso}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-      } 
-      })
-      .then(function(response) {
-        document.getElementById('nombre_recurso').textContent = response.data.nnombrerecurso;
+
+      const Histo = response.data.historial
       
+      const tableBody = document.querySelector('.table-body');
+      tableBody.innerHTML = ''; // Limpiar resultados anteriores
+
+      let flag = 0;
+      Promise.all(Histo).then(function(elemento){
+
       })
-      .catch(function(error) {
-        console.error('Error al obtener los datos del recurso:', error);
-      })
+      Histo.forEach(async elemento => {
+          const row = document.createElement('tr');
+
+          const idCell = document.createElement('td');
+          idCell.textContent = elemento.kidreserva;
+          row.appendChild(idCell);
+
+          let idrecurso = Histo[flag].kidrecurso;
+          flag += 1;
+          console.log(idrecurso);
+          
+          nombreRecurso = obtenerNombre(idrecurso);
+          console.log("Desp", nombreRecurso);
+
+          const nombreCell = document.createElement('td');
+          nombreCell.textContent = "No";
+          row.appendChild(nombreCell);
+
+          const fechaCell = document.createElement('td');
+          fechaCell.textContent = elemento.ffechareserva;
+          row.appendChild(fechaCell);
+
+          const horaICell = document.createElement('td');
+          horaICell.textContent = elemento.fhorainicioreserva;
+          row.appendChild(horaICell);
+
+          const horaFCell = document.createElement('td');
+          horaFCell.textContent = elemento.fhorafinalreserva;
+          row.appendChild(horaFCell);
+
+          const estadoCell = document.createElement('td');
+          estadoCell.textContent = elemento.nestadoreserva;
+          row.appendChild(estadoCell);
+
+          const opcionCell = document.createElement('td');
+          if(elemento.ncalificacion === 0){
+            const button = document.createElement('button');
+
+            if(elemento.nestadoreserva === 'finalizado'){
+              button.textContent = 'Calificar';
+              button.addEventListener('click', () => calificar(elemento.kidreserva));
+              
+            }
+            if(elemento.nestadoreserva === 'reservado'){
+              button.textContent = "Cancelar";
+              button.addEventListener('click', () => cancelarReserva(elemento.kidreserva));
+            }
+            opcionCell.appendChild(button);
+          }else{
+            opcionCell.textContent = elemento.ncalificacion;
+          }
+          
+          
+          row.appendChild(opcionCell);
+
+          tableBody.appendChild(row);
+      });
   })
   .catch(function(error) {
       console.error('Error al obtener los datos del usuario:', error);
@@ -60,6 +144,14 @@ document.addEventListener('DOMContentLoaded', function() {
       console.log('Petición a la API completada.');
   });
 });
+
+
+
+
+function calificar(idreserva) {
+  window.location.href = `calificar.html?id=${idreserva}`;
+}
+
 
 document.getElementById('cerrarsesionsiosi').addEventListener('click', function() {
   // Borrar información de la sesión
