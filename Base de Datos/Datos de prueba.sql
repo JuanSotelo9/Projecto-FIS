@@ -1,6 +1,8 @@
-INSERT INTO `projectfis`.`tipo_de_recurso` (`k_idtiporecurso`, `n_nombretiporecurso`, `n_descripciontiporecurso`) VALUES ('1', 'Laboratorio', 'Laboratorio');
-INSERT INTO `projectfis`.`tipo_de_recurso` (`k_idtiporecurso`, `n_nombretiporecurso`, `n_descripciontiporecurso`) VALUES ('2', 'Aula', 'Aula');
-INSERT INTO `projectfis`.`tipo_de_recurso` (`k_idtiporecurso`, `n_nombretiporecurso`, `n_descripciontiporecurso`) VALUES ('3', 'Tablet', 'Tablet');
+INSERT INTO `projectfis`.`tipo_de_recurso` (`k_idtiporecurso`, `n_nombretiporecurso`, `n_descripciontiporecurso`, `n_imagen`) VALUES ('1', 'Laboratorio', 'Laboratorio', 'https://www.ucentral.edu.co/sites/default/files/inline-images/recorrido-laboratorios-universidad-central.jpg');
+INSERT INTO `projectfis`.`tipo_de_recurso` (`k_idtiporecurso`, `n_nombretiporecurso`, `n_descripciontiporecurso`, `n_imagen`) VALUES ('2', 'Aula', 'Aula', 'https://st3.depositphotos.com/29384342/33698/i/450/depositphotos_336981024-stock-photo-empty-modern-classrom-teacher-desk.jpg');
+INSERT INTO `projectfis`.`tipo_de_recurso` (`k_idtiporecurso`, `n_nombretiporecurso`, `n_descripciontiporecurso`, `n_imagen`) VALUES ('3', 'Tablet', 'Tablet', 'https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2021/07/lenovo-tab-p11-pro-2424527.jpg');
+INSERT INTO `projectfis`.`tipo_de_recurso` (`k_idtiporecurso`, `n_nombretiporecurso`, `n_descripciontiporecurso`, `n_imagen`) VALUES ('4', 'Portatil', 'Portatil', 'https://megacomputer.com.co/wp-content/uploads/2023/11/PORTATIL-HP-14-EM0014LA-4.jpg');
+INSERT INTO `projectfis`.`tipo_de_recurso` (`k_idtiporecurso`, `n_nombretiporecurso`, `n_descripciontiporecurso`, `n_imagen`) VALUES ('5', 'Video Beam', 'Video Beam', 'https://mainframeltda.com/wp-content/uploads/2019/04/Que_es_un_proyector_de_video-1100x825.jpg');
 INSERT INTO `projectfis`.`recurso` (`k_idrecurso`, `n_nombrerecurso`, `n_descripcionrecurso`, `k_idtiporecurso`) VALUES ('1', 'Laboratorio 501', 'Laboratorio de fisica', '1');
 INSERT INTO `projectfis`.`recurso` (`k_idrecurso`, `n_nombrerecurso`, `n_descripcionrecurso`, `k_idtiporecurso`) VALUES ('2', 'Laboratorio de control', 'Laboratorio de control', '1');
 INSERT INTO `projectfis`.`recurso` (`k_idrecurso`, `n_nombrerecurso`, `n_descripcionrecurso`, `k_idtiporecurso`) VALUES ('3', 'Salon 204', 'Salon para clases', '2');

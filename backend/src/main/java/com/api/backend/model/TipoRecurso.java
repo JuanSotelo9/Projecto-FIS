@@ -21,4 +21,5 @@ public class TipoRecurso {
     int kIdtiporecurso;
     String nNombretiporecurso;
     String nDescripciontiporecurso;
+    String nImagen;
 }

@@ -13,13 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Trae y muestra los recursos en la tabla
 function obtenerRecursos(nombreRecurso = '') {
-    let url;
-    if(opcion == 0){
-        url = '/recursos';
-    }else{
-        url = `/recursos/tipo/${opcion}`
-    }
-    api.get(url, {
+    api.get('/recursos', {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -29,13 +23,14 @@ function obtenerRecursos(nombreRecurso = '') {
 
         const tableBody = document.querySelector('.table-body');
         tableBody.innerHTML = ''; // Limpiar resultados anteriores
-        let recursoEncontrado = false;
 
         recursos.forEach(recurso => {
             if(nombreRecurso && !recurso.nnombrerecurso.toLowerCase().includes(nombreRecurso.toLowerCase())) {
                 return; // Salta este recurso si no coincide con el nombreRecurso
             }
-            recursoEncontrado = true;
+            if(opcion != 0 && recurso.kidtiporecurso != opcion){
+                return;
+            }
             const row = document.createElement('tr');
 
             const idCell = document.createElement('td');
@@ -60,10 +55,6 @@ function obtenerRecursos(nombreRecurso = '') {
             tableBody.appendChild(row);
         });
 
-        if (!recursoEncontrado) {
-            obtenerRecursos();
-            alert('No se encontraron recursos con ese nombre');
-        }
     })
     .catch(function (error){
         console.error("Error al obtener recursos: ", error)
@@ -77,10 +68,12 @@ function reservar(idRecurso) {
 
 // Click en buscar
 function buscar() {
+    
     const inputText = document.getElementById('search-input');
     const input = inputText.value;
     inputText.value = '';
     if (input.trim() !== '') {
+        opcion = 0;
         obtenerRecursos(input);
     }
 }
