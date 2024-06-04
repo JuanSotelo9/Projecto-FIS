@@ -1,5 +1,3 @@
-
-
 const hamMenu = document.querySelector(".ham-menu");
 
 const offScreenMenu = document.querySelector(".off-screen-menu");
@@ -15,11 +13,11 @@ const api = axios.create({
 
 const userId = localStorage.getItem('userId');
 const token = localStorage.getItem('token');
-
+let nombreRecurso;
 console.log(userId, token);
 
-document.addEventListener('DOMContentLoaded', function() {
-  
+
+document.addEventListener('DOMContentLoaded', function() {  
   api.get(`/user/${userId}`, {
       headers: {
           'Authorization': `Bearer ${token}`
@@ -31,26 +29,56 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('nombreCompleto').value = userData.nombre;
       document.getElementById('usuario').value = userData.usuario;
       document.getElementById('correo').value = userData.email;
-      Histo=response.data.historial
-      document.getElementById('id_reserva').textContent = Histo[0].kidreserva;
-      document.getElementById('fecha_reserva').textContent = Histo[0].ffechareserva;
-      document.getElementById('hora_inicio').textContent = Histo[0].fhorainicioreserva;
-      document.getElementById('hora_fin').textContent = Histo[0].fhorafinalreserva;
-      document.getElementById('estado_reserva').textContent = Histo[0].nestadoreserva;
-      idrecurso=Histo[0].kidrecurso
-      console.log(Histo[0].ffechareserva)
-      api.get(`/recursos/${idrecurso}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-      } 
-      })
-      .then(function(response) {
-        document.getElementById('nombre_recurso').textContent = response.data.nnombrerecurso;
+
+      Histo = response.data.historial
       
-      })
-      .catch(function(error) {
-        console.error('Error al obtener los datos del recurso:', error);
-      })
+      const tableBody = document.querySelector('.table-body');
+      tableBody.innerHTML = ''; // Limpiar resultados anteriores
+
+      let flag = 0;
+      Histo.forEach(elemento => {
+          const row = document.createElement('tr');
+
+          const idCell = document.createElement('td');
+          idCell.textContent = elemento.kidreserva;
+          row.appendChild(idCell);
+
+          let idrecurso = Histo[flag].kidrecurso;
+          flag += 1;
+          console.log(idrecurso);
+          
+          nombreRecurso = obtenerNombre(idrecurso);
+          console.log("Desp", nombreRecurso);
+
+          const nombreCell = document.createElement('td');
+          nombreCell.textContent = "No";
+          row.appendChild(nombreCell);
+
+          const fechaCell = document.createElement('td');
+          fechaCell.textContent = elemento.ffechareserva;
+          row.appendChild(fechaCell);
+
+          const horaICell = document.createElement('td');
+          horaICell.textContent = elemento.fhorainicioreserva;
+          row.appendChild(horaICell);
+
+          const horaFCell = document.createElement('td');
+          horaFCell.textContent = elemento.fhorafinalreserva;
+          row.appendChild(horaFCell);
+
+          const estadoCell = document.createElement('td');
+          estadoCell.textContent = elemento.nestadoreserva;
+          row.appendChild(estadoCell);
+
+          const opcionCell = document.createElement('td');
+          const calificarButton = document.createElement('button');
+          calificarButton.textContent = 'Calificar';
+          calificarButton.addEventListener('click', () => calificar(elemento.kidrecurso));
+          opcionCell.appendChild(calificarButton);
+          row.appendChild(opcionCell);
+
+          tableBody.appendChild(row);
+      });
   })
   .catch(function(error) {
       console.error('Error al obtener los datos del usuario:', error);
@@ -59,6 +87,28 @@ document.addEventListener('DOMContentLoaded', function() {
       console.log('Petición a la API completada.');
   });
 });
+
+
+function obtenerNombre(idrecurso) {
+  api.get(`/recursos/${idrecurso}`, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+  .then(function(response) {
+    let nombreRecurso1 = response.data.nnombrerecurso;
+    console.log('Dentro: ', nombreRecurso1);
+    return nombreRecurso1;
+  })
+  .catch(function(error) {
+    console.error('Error al obtener los datos del recurso:', error);
+  });
+}
+
+function calificar(idRecurso) {
+  window.location.href = `calificar.html?id=${idRecurso}`;
+}
+
 
 document.getElementById('cerrarsesionsiosi').addEventListener('click', function() {
   // Borrar información de la sesión
