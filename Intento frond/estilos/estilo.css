@@ -658,9 +658,7 @@ section {
 .selector_container {
     position: absolute;
     top: 100px;
-    max-width: 70rem;
     width: 100%;
-    /* height: fit-content; */
     margin-inline: 5rem;
     background-color: #fff;
     box-shadow: 0 7px 0.8rem rgba(0, 0, 0, 0.2);
@@ -865,7 +863,7 @@ section {
     }
 
     .card {
-        width: 12rem;
+        width: 6rem;
     }
 
     .card_container {
@@ -877,14 +875,10 @@ section {
         display: block;
     }
 
-}
-
-@media (width <=480px) {
-    .card {
-        width: 12rem;
+    .title {
+        font-size: 2rem;
     }
 }
-
 
 /*Mi cuenta*/
 

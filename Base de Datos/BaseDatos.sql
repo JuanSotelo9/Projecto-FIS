@@ -152,6 +152,7 @@ CREATE TABLE `tipo_de_recurso`
 	`k_idtiporecurso` INT NOT NULL AUTO_INCREMENT,
 	`n_nombretiporecurso` VARCHAR(50) NOT NULL,
 	`n_descripciontiporecurso` VARCHAR(255) NOT NULL,
+    `n_imagen` VARCHAR(250) NOT NULL,
 	CONSTRAINT `PK_Tipo_De_Recurso` PRIMARY KEY (`k_idtiporecurso` ASC)
 )
 
