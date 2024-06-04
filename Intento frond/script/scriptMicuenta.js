@@ -90,7 +90,6 @@ document.addEventListener('DOMContentLoaded', async function() {
 
           let idrecurso = Histo[flag].kidrecurso;
           flag += 1;
-          console.log(idrecurso);
           
           nombreRecurso = await obtenerNombre(idrecurso);
 
