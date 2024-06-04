@@ -24,7 +24,6 @@ document.querySelector('.botondecalificar').addEventListener('click', function (
 
     api.post(`/user/calificar`, data)
         .then(function (response){
-            console.log(response.data)
             if(response.data=='calificado'){
                 alert(`Recurso calificado correctamente`)
             }

@@ -145,7 +145,6 @@ document.querySelector('.modal_close').addEventListener('click', function (e) {
     api.post('/auth/register', data)
         .then(function (response) {
             x1 = response.data.response;
-            console.log(response.data);
             const successMessage = document.getElementById('registration-success-message');
             successMessage.style.display = 'block';
             if(x1=='id ya registrado'){
@@ -200,12 +199,10 @@ document.querySelector('.modal_close2').addEventListener('click', function (e) {
     api.post('/auth/login-user', data)
         .then(function (response){
             x2=response.data.response
-            x3=response.data.id
-            console.log(response.data)  
+            x3=response.data.id 
             token = response.data.response;
 
             if(x3!=null){
-                console.log(x3) 
                 localStorage.setItem('userId', x3);
                 localStorage.setItem('token', token);
                 window.location.href = 'homeUser.html';
