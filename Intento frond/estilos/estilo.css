@@ -656,6 +656,8 @@ section {
 }
 
 .selector_container {
+    position: absolute;
+    top: 100px;
     max-width: 48rem;
     width: 100%;
     /* height: fit-content; */
@@ -887,24 +889,31 @@ section {
 /*Mi cuenta*/
 
 .formulario {
+   display: flex;
+   
     background-color: var(--primario);
     width: min(60rem, 100%);
-    /*min utiliza el valor más pequeño o si no toma el 100% / Sirve para ahorrarse unos mediaquerys*/
+    /* min utiliza el valor más pequeño o si no toma el 100% / Sirve para ahorrarse unos mediaquerys */
     margin: 1rem auto;
-    /*sirve para centrar un elemento, por ejemplo un formulario cuyo padre no sea un display flex*/
+    /* sirve para centrar un elemento, por ejemplo un formulario cuyo padre no sea un display flex */
     padding: 2rem;
     border-radius: .5rem;
     border-width: 3px;
     border-style: outset;
     border-color: var(--negro);
+    box-sizing: border-box;
 }
 
 .contenedor-campos {
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos dentro del contenedor se apilen verticalmente */
     gap: 0.5rem;
 }
 
 .formulario fieldset {
     border: none;
+    margin: 0;
+    padding: 0;
 }
 
 .formulario legend {
